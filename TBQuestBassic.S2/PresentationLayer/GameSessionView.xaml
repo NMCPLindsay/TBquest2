@@ -1,0 +1,174 @@
+﻿<Window x:Class="TBQuestBasic.PresentationLayer.GameSessionView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TBQuestBasic.PresentationLayer"
+        mc:Ignorable="d"
+        Title="ReDtHrE3 Development" 
+        
+        
+        Height="1000" 
+        Width="1700"
+        WindowStartupLocation="CenterScreen" 
+        BorderThickness="0"
+        ResizeMode="CanResize" FontFamily="Agency FB"  Background="#FF18092E"
+       >
+  
+    <Window.Resources>
+
+        
+        <Style x:Key="HeaderStyle" TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="GhostWhite"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style x:Key="SubHeaderStyle" TargetType="Label">
+            <Setter Property="Foreground" Value="GhostWhite"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+        <Style x:Key="DetailLabelStyle" TargetType="Label">
+            <Setter Property="Foreground" Value="GhostWhite"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style x:Key="VariableLabelStyle" TargetType="Label">
+            <Setter Property="Foreground" Value="GhostWhite"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="ExtraBold"/>
+        </Style>
+        <Style x:Key="RadioButtonStyle" TargetType="RadioButton">
+            <Setter Property="Foreground" Value="GhostWhite"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Margin" Value="0,0,10,0"/>
+        </Style>
+        <Style x:Key="DetailTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Foreground" Value="DarkBlue"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Background" Value="WhiteSmoke" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="MasterTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Foreground" Value="DarkBlue"/>
+            <Setter Property="Background" Value="GhostWhite"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+        </Style>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="DarkBlue"/>
+            <Setter Property="Foreground" Value="GhostWhite"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="40"/>
+        </Style>
+        <Style x:Key="BorderStyle" TargetType="Border">
+            <Setter Property="BorderBrush" Value="GhostWhite"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="10"/>
+        </Style>
+
+    </Window.Resources>
+    <Window.DataContext>
+        <local:GameSessionViewModel/>
+    </Window.DataContext>
+
+    <Grid Margin="2">
+
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="1*"/>
+
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Style="{StaticResource BorderStyle}"/>
+            <StackPanel Grid.Column="0" Background="#FF1A1A5F" Margin="4" >
+
+                <Label Style="{StaticResource HeaderStyle}"
+                    Content="Action Interface"/>
+
+
+            </StackPanel>
+            <Grid Grid.Column="1">
+                <Border Style="{StaticResource BorderStyle}" Margin="0,2,0,-2"/>
+                <Label Style="{StaticResource HeaderStyle}"
+                    Content="Navigation and Messages"/>
+
+            </Grid>
+            <Grid Grid.Column="2">
+                <Border Style="{StaticResource BorderStyle}"/>
+                <StackPanel Grid.Column="2" Background="#FF420808" Margin="4" >
+
+                    <Label Style="{StaticResource HeaderStyle}"
+                    Content="Inventory Interface"/>
+
+                </StackPanel>
+
+            </Grid>
+
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" Grid.ColumnSpan="2" Margin="6,0,988,0">
+
+                <Image Source="{Binding Player.ImgFileName}"  HorizontalAlignment="left"/>
+                <Label Content="Name:" Style="{StaticResource DetailLabelStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin ="100,0,0,0"/>
+                <Label Content="Race:" Style="{StaticResource DetailLabelStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,50,0,0"/>
+                <Label Content="Align:" Style="{StaticResource DetailLabelStyle}" HorizontalAlignment="left" VerticalAlignment="Top" Margin="100,25,0,0"/>
+                <Label Content="Level:" Style="{StaticResource DetailLabelStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin ="100,75,0,0"/>
+                <Label Content="EXP:" Style="{StaticResource DetailLabelStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,100,0,0"/>
+                <Label Content="Health:" Style="{StaticResource DetailLabelStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,125,0,0"/>
+                <TextBox Name="PlayerNameLabel" Text="{Binding player.Name}" Style="{StaticResource DetailTextBoxStyle}"  VerticalAlignment="Top" HorizontalAlignment="Left" Margin ="150,0,0,0"/>
+                <TextBox Name="PlayerRaceLabel" Text="{Binding player.Race}" Style="{StaticResource DetailTextBoxStyle}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="150,50,0,0"/>
+                <TextBox Name="PlayerAlignmentLabel" Text="{Binding player.Align}" Style="{StaticResource DetailTextBoxStyle}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="150,25,0,0"/>
+                <TextBox Name="PlayerLevelLabel" Text="{Binding player.Level}" Style="{StaticResource DetailTextBoxStyle}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin ="150,75,0,0"/>
+                <TextBox Name="PlayerExpLabel" Text="{Binding player.EXP}" Style="{StaticResource DetailTextBoxStyle}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin ="150,100,0,0"/>
+                <TextBox Name="PlayerHealthtexbox"  Text="{Binding player.HitPoints}" Style="{StaticResource DetailTextBoxStyle}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin ="150,125,0,0"/>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Vertical">
+
+                </StackPanel>
+                <Grid Grid.Column="1">
+                    <TextBox Text="{Binding MessageDisplay, Mode=OneWay}" Style="{StaticResource MasterTextBoxStyle}" TextWrapping="Wrap"/>
+                </Grid>
+                <StackPanel Grid.Column="2" Orientation="Vertical"/>
+            </Grid>
+            <Grid Grid.Column="2"/>
+
+        </Grid>
+    </Grid>
+</Window>
+
+
+
+
+
