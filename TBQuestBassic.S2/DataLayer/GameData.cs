@@ -25,7 +25,7 @@ namespace TBQuestBasic.DataLayer
                 HitPoints = 100,
                 EXP = 0,
                 Bio = "The mandalorians were a proud race of bounty hunters. The most famous of which are the late Jango Fett and his son, Boba Fett.",
-                ImgFileName = new Uri(@"C:\Users\phili\Desktop\Application Dev\TBQuestBasic\TBQuestBassic\Assets\mandolorain.jpg")
+                ImgFileName = @"C:\Users\phili\Desktop\Application Dev\TBQuestBasic\TBQuestBassic\Assets\mandolorian.jpg"
 
             };
 

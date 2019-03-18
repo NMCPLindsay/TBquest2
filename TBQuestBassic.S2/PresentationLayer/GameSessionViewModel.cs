@@ -34,7 +34,7 @@ namespace TBQuestBasic.PresentationLayer
         public Location CurrentLocation
         {
             get { return _currentLocation; }
-            set { _currentLocation = value; }
+            set => _currentLocation = value;
         }
 
 

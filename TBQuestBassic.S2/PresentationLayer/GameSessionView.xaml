@@ -117,7 +117,7 @@
                 <Label Style="{StaticResource DetailLabelStyle}" HorizontalAlignment="Center" Content="Location Description: "/>
                 <TextBox Name="CurrentLocationDescriptionTextBox" Style="{StaticResource DetailTextBoxStyle}" HorizontalAlignment="Center" Text="{Binding CurrentLocation.Description}" TextWrapping="Wrap" Width="700" TextAlignment="Left" VerticalContentAlignment="Top" Height="200"/>
                 <Label Style="{StaticResource DetailLabelStyle}" HorizontalAlignment="Center" Content="Available Locations:"/>
-                <ListBox Width="300" ItemsSource="{Binding AccessibleLocations}">
+                <ListBox Width="300" ItemsSource="{Binding AccessibleLocations}" SelectedItem="{Binding CurrentLocation}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Margin="0">

@@ -130,10 +130,7 @@
     <Content Include="Assets\human.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\mandolorain.jpg" />
-    <Content Include="Assets\mandolorian.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Resource Include="Assets\mandolorian.jpg" />
     <Content Include="Assets\wookie.jpg" />
   </ItemGroup>
   <ItemGroup>

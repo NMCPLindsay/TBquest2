@@ -21,9 +21,9 @@ namespace TBQuestBasic.Models
         private int _level;
         private double _hitPoints;
         private double _exp;
-        private Uri _imgFileName;
+        private string _imgFileName;
 
-        public Uri ImgFileName
+        public string ImgFileName
         {
             get { return _imgFileName; }
             set { _imgFileName = GetImageFileName(); }
@@ -96,21 +96,21 @@ namespace TBQuestBasic.Models
 
             return Bio;
         }
-        public Uri GetImageFileName()
+        public string GetImageFileName()
         {
-            
-            Uri fileName = null;
+
+            string fileName = null;
             if (Race == Character.Races.Mandalorian)
             {
-                fileName = new Uri(@"C:\Users\phili\Desktop\Application Dev\TBQuestBasic\TBQuestBassic\TBQuestBassic\Assets\mandolorain.jpg");
+                fileName = @"C:\Users\phili\Desktop\Application Dev\TBQuestBasic\TBQuestBassic\TBQuestBassic\Assets\mandolorain.jpg";
             }
             else if (Race == Character.Races.Human)
             {
-                fileName = new Uri(@"C:\Users\phili\Desktop\Application Dev\TBQuestBasic\TBQuestBassic\TBQuestBassic\Assets\human.jpg");
+                fileName = @"C:\Users\phili\Desktop\Application Dev\TBQuestBasic\TBQuestBassic\TBQuestBassic\Assets\human.jpg";
             }
             else if (Race == Character.Races.Wookie)
             {
-                fileName = new Uri(@"C:\Users\phili\Desktop\Application Dev\TBQuestBasic\TBQuestBassic\TBQuestBassic\Assets\wookie.jpg");
+                fileName = @"C:\Users\phili\Desktop\Application Dev\TBQuestBasic\TBQuestBassic\TBQuestBassic\Assets\wookie.jpg";
             }
 
             return fileName;
