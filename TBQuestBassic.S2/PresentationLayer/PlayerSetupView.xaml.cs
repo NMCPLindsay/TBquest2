@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TBQuestBasic.Models;
-using TBQuestBasic.DataLayer;
+
 
 namespace TBQuestBasic.PresentationLayer
 {
@@ -60,6 +60,25 @@ namespace TBQuestBasic.PresentationLayer
 
             return errorMessage == "" ? true : false;
         }
+        private void SetPlayerImage()
+        {
+
+            
+
+            if (PlayerRaceComboBox.SelectedItem.Equals("Mandalorian"))
+            {
+                PlayerImage.Source = new BitmapImage(new Uri(@"C:\Users\phili\Desktop\Application Dev\TBQuestBasic\TBQuestBassic\Assets\mandolorain.jpg"));
+            }
+            else if (PlayerRaceComboBox.SelectedItem.Equals("Human"))
+            {
+                PlayerImage.Source = new BitmapImage(new Uri(@"C:\Users\phili\Desktop\Application Dev\TBQuestBasic\TBQuestBassic\Assets\human.jpg"));
+            }
+            else if (PlayerRaceComboBox.SelectedItem.Equals("Wookie"))
+            {
+                PlayerImage.Source = new BitmapImage(new Uri(@"C:\Users\phili\Desktop\Application Dev\TBQuestBasic\TBQuestBassic\Assets\wookie.jpg"));
+            }
+
+        }
 
         private void OKButton_Click(object sender, RoutedEventArgs e)
         {
@@ -89,14 +108,7 @@ namespace TBQuestBasic.PresentationLayer
 
         private void CharacterViewButton_Click(object sender, RoutedEventArgs e)
         {
-            if (PlayerRaceComboBox.SelectedItem.Equals("Mandalorian"))
-            {
-                
-            }
-            else if (true)
-            {
-
-            }
+            SetPlayerImage();
         }
     }
 }

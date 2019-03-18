@@ -12,6 +12,7 @@ namespace TBQuestBasic.Models
         private ObservableCollection<Location> _locations;
         private Location _currentLocation;
 
+
         public Location CurrentLocation
         {
             get { return _currentLocation; }
@@ -25,22 +26,28 @@ namespace TBQuestBasic.Models
             set { _locations = value; }
         }
 
-        public ObservableCollection<Location> AccessableLocations
+        public ObservableCollection<Location> AccessibleLocations
         {
             get
             {
-                ObservableCollection<Location> accessableLocations = new ObservableCollection<Location>();
+                ObservableCollection<Location> accessibleLocations = new ObservableCollection<Location>();
                 foreach (var location in _locations)
                 {
-                    if (location.IsAccessable == true)
+                    if (location.IsAccessible == true)
                     {
-                        accessableLocations.Add(location);
+                        accessibleLocations.Add(location);
                     }
                 }
-                return accessableLocations;
+                return accessibleLocations;
             }
         }
        
+
+        public void Move(Location location)
+        {
+            _currentLocation = location;
+
+        }
 	
 
 	}

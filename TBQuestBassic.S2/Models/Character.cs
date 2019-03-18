@@ -20,9 +20,17 @@ namespace TBQuestBasic.Models
         private string _name;
         private int _locationId;
         private Races _race;
+        private string _bio;
+
+        public string Bio
+        {
+            get { return _bio; }
+            set { _bio = GetPlayerBio(); }
+        }
 
 
-       
+
+
 
         public Races Race
         {
@@ -51,7 +59,7 @@ namespace TBQuestBasic.Models
             set { _id = value; }
         }
 
-        public abstract string GetPlayerBio(Player player);
+        public abstract string GetPlayerBio();
 
         public virtual string GetPlayerGreeting(Player player)
         {

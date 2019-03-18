@@ -11,12 +11,12 @@ namespace TBQuestBasic.Models
         private int _id;
         private string _name;
         private string _description;
-        private bool _isAccessable;
+        private bool _isAccessible;
 
-        public bool IsAccessable
+        public bool IsAccessible
         {
-            get { return _isAccessable; }
-            set { _isAccessable = value; }
+            get { return _isAccessible; }
+            set { _isAccessible = value; }
         }
 
 

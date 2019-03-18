@@ -108,12 +108,27 @@
 
 
             </StackPanel>
-            <Grid Grid.Column="1">
+            <StackPanel Grid.Column="1">
                 <Border Style="{StaticResource BorderStyle}" Margin="0,2,0,-2"/>
                 <Label Style="{StaticResource HeaderStyle}"
                     Content="Navigation and Messages"/>
+                <Label Style="{StaticResource DetailLabelStyle}" HorizontalAlignment="Center" Content="Location: "/>
+                <TextBox Name="CurrentLocationNameTextBox" Style="{StaticResource DetailTextBoxStyle}" HorizontalAlignment="Center" Text="{Binding CurrentLocation.Name}" Width="350" TextAlignment="Center"/>
+                <Label Style="{StaticResource DetailLabelStyle}" HorizontalAlignment="Center" Content="Location Description: "/>
+                <TextBox Name="CurrentLocationDescriptionTextBox" Style="{StaticResource DetailTextBoxStyle}" HorizontalAlignment="Center" Text="{Binding CurrentLocation.Description}" TextWrapping="Wrap" Width="700" TextAlignment="Left" VerticalContentAlignment="Top" Height="200"/>
+                <Label Style="{StaticResource DetailLabelStyle}" HorizontalAlignment="Center" Content="Available Locations:"/>
+                <ListBox Width="300" ItemsSource="{Binding AccessibleLocations}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Margin="0">
+                                <Label Content="{Binding Name}" ContentStringFormat="Name: {0}"/>
+                                <TextBox Text="{Binding Accessible, StringFormat='\{0\}'}" Style="{StaticResource DetailTextBoxStyle}" Width="Auto"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
 
-            </Grid>
+            </StackPanel>
             <Grid Grid.Column="2">
                 <Border Style="{StaticResource BorderStyle}"/>
                 <StackPanel Grid.Column="2" Background="#FF420808" Margin="4" >
@@ -134,19 +149,19 @@
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0" Grid.ColumnSpan="2" Margin="6,0,988,0">
 
-                <Image Source="{Binding Player.ImgFileName}"  HorizontalAlignment="left"/>
+                <Image Name="PlayerImage" Source="{Binding Player.ImgFileName}"  HorizontalAlignment="left"/>
                 <Label Content="Name:" Style="{StaticResource DetailLabelStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin ="100,0,0,0"/>
                 <Label Content="Race:" Style="{StaticResource DetailLabelStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,50,0,0"/>
                 <Label Content="Align:" Style="{StaticResource DetailLabelStyle}" HorizontalAlignment="left" VerticalAlignment="Top" Margin="100,25,0,0"/>
                 <Label Content="Level:" Style="{StaticResource DetailLabelStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin ="100,75,0,0"/>
                 <Label Content="EXP:" Style="{StaticResource DetailLabelStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,100,0,0"/>
                 <Label Content="Health:" Style="{StaticResource DetailLabelStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,125,0,0"/>
-                <TextBox Name="PlayerNameLabel" Text="{Binding player.Name}" Style="{StaticResource DetailTextBoxStyle}"  VerticalAlignment="Top" HorizontalAlignment="Left" Margin ="150,0,0,0"/>
-                <TextBox Name="PlayerRaceLabel" Text="{Binding player.Race}" Style="{StaticResource DetailTextBoxStyle}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="150,50,0,0"/>
-                <TextBox Name="PlayerAlignmentLabel" Text="{Binding player.Align}" Style="{StaticResource DetailTextBoxStyle}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="150,25,0,0"/>
-                <TextBox Name="PlayerLevelLabel" Text="{Binding player.Level}" Style="{StaticResource DetailTextBoxStyle}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin ="150,75,0,0"/>
-                <TextBox Name="PlayerExpLabel" Text="{Binding player.EXP}" Style="{StaticResource DetailTextBoxStyle}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin ="150,100,0,0"/>
-                <TextBox Name="PlayerHealthtexbox"  Text="{Binding player.HitPoints}" Style="{StaticResource DetailTextBoxStyle}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin ="150,125,0,0"/>
+                <TextBox Name="PlayerNameLabel" Text="{Binding Player.Name}" Style="{StaticResource DetailTextBoxStyle}"  VerticalAlignment="Top" HorizontalAlignment="Left" Margin ="150,0,0,0"/>
+                <TextBox Name="PlayerRaceLabel" Text="{Binding Player.Race}" Style="{StaticResource DetailTextBoxStyle}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="150,50,0,0"/>
+                <TextBox Name="PlayerAlignmentLabel" Text="{Binding Player.Align}" Style="{StaticResource DetailTextBoxStyle}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="150,25,0,0"/>
+                <TextBox Name="PlayerLevelLabel" Text="{Binding Player.Level}" Style="{StaticResource DetailTextBoxStyle}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin ="150,75,0,0"/>
+                <TextBox Name="PlayerExpLabel" Text="{Binding Player.EXP}" Style="{StaticResource DetailTextBoxStyle}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin ="150,100,0,0"/>
+                <TextBox Name="PlayerHealthtexbox"  Text="{Binding Player.HitPoints}" Style="{StaticResource DetailTextBoxStyle}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin ="150,125,0,0"/>
             </Grid>
             <Grid Grid.Column="1">
                 <Grid.ColumnDefinitions>

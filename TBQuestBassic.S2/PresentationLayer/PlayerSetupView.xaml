@@ -83,17 +83,17 @@
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Grid.Column="0">
-                <Label Content="Player Image" Style="{StaticResource HeaderStyle}"/>
                 
 
 
             </StackPanel>
+            
             <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
                 <Image Name="PlayerImage" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="2" Grid.Column="0">
-            <Button Name="CharacterViewButton" Style="{StaticResource ButtonStyle}" Margin="100,0,100, 50"  Content="View Image"  Height="Auto" Width="Auto"  Grid.Row="1"/>
+            <Button Name="CharacterViewButton" Style="{StaticResource ButtonStyle}" Margin="100,0,100, 50"  Content="View Image"  Height="Auto" Width="Auto"  Grid.Row="1" Click="CharacterViewButton_Click"/>
         </Grid>
 
 

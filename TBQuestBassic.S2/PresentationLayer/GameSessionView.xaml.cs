@@ -30,5 +30,10 @@ namespace TBQuestBasic.PresentationLayer
             
             InitializeComponent();
         }
+
+        private void AvailableLocationsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

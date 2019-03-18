@@ -16,17 +16,17 @@ namespace TBQuestBasic.Models
             Evil
         }
 
-        private string _bio;
+    
         private Alignments _align;
         private int _level;
         private double _hitPoints;
         private double _exp;
-        private string _imgFileName;
+        private Uri _imgFileName;
 
-        public string ImgFileName
+        public Uri ImgFileName
         {
             get { return _imgFileName; }
-            set { _imgFileName = value; }
+            set { _imgFileName = GetImageFileName(); }
         }
 
         
@@ -59,11 +59,7 @@ namespace TBQuestBasic.Models
         }
 
 
-        public string Bio
-        {
-            get { return _bio; }
-            set { _bio = value; }
-        }
+     
 
         
 
@@ -72,29 +68,24 @@ namespace TBQuestBasic.Models
 
         public Player()
         {
-            
 
-
-        }
-        public Player(Player player)
-        {
-            player.Bio = GetPlayerBio(player);
-            player.ImgFileName = GetImageFileName(player);
+        
 
         }
-        public override string GetPlayerBio(Player player)
+     
+        public override string GetPlayerBio()
         {
             string Bio = null;
             
-            if (player.Race == Races.Mandalorian)
+            if (Race == Races.Mandalorian)
             {
                  Bio = "The mandalorians were a proud race of bounty hunters. The most famous of which are the late Jango Fett and his son, Boba Fett.";
             }
-            else if (player.Race == Races.Human)
+            else if (Race == Races.Human)
             {
                 Bio = "The humans are a poplulace sentiant race primarily from Corellia. They are found all over the galaxy and are a balanced race. Notable humans are Han Solo and Luke Skywalker.";
             }
-            else if (player.Race == Races.Wookie)
+            else if (Race == Races.Wookie)
             {
                 Bio = "Hailing from their homeworld of Kashyyk, Wookies are tall, furry creatures. Known for feirce strength, they were often used as slaves by the Empire. Noteable wookies are Chewbacca and Gungi";
             }
@@ -105,21 +96,21 @@ namespace TBQuestBasic.Models
 
             return Bio;
         }
-        public string GetImageFileName(Player player)
+        public Uri GetImageFileName()
         {
             
-            string fileName = null;
-            if (player.Race == Character.Races.Mandalorian)
+            Uri fileName = null;
+            if (Race == Character.Races.Mandalorian)
             {
-                fileName = @"C:\Users\phili\Desktop\Application Dev\TBQuestBasic\TBQuestBassic\TBQuestBassic\Assets\mandolorain.jpg";
+                fileName = new Uri(@"C:\Users\phili\Desktop\Application Dev\TBQuestBasic\TBQuestBassic\TBQuestBassic\Assets\mandolorain.jpg");
             }
-            else if (player.Race == Character.Races.Human)
+            else if (Race == Character.Races.Human)
             {
-                fileName = @"C:\Users\phili\Desktop\Application Dev\TBQuestBasic\TBQuestBassic\TBQuestBassic\Assets\human.jpg";
+                fileName = new Uri(@"C:\Users\phili\Desktop\Application Dev\TBQuestBasic\TBQuestBassic\TBQuestBassic\Assets\human.jpg");
             }
-            else if (player.Race == Character.Races.Wookie)
+            else if (Race == Character.Races.Wookie)
             {
-                fileName = @"C:\Users\phili\Desktop\Application Dev\TBQuestBasic\TBQuestBassic\TBQuestBassic\Assets\wookie.jpg";
+                fileName = new Uri(@"C:\Users\phili\Desktop\Application Dev\TBQuestBasic\TBQuestBassic\TBQuestBassic\Assets\wookie.jpg");
             }
 
             return fileName;

@@ -14,10 +14,11 @@ namespace TBQuestBasic.BusinessLayer
         GameSessionViewModel _gameSessionViewModel;
         Player _player;
         List<string> _messages;
-        bool _newPlayer = true;
+        bool _newPlayer = false;
         PlayerSetupView _playerSetupView;
         Map _gameMap;
         Location _currentLocation;
+
 
         public GameBusiness()
         {
@@ -51,24 +52,28 @@ namespace TBQuestBasic.BusinessLayer
 
         private void InstantiateAndShowView()
         {
-            _gameSessionViewModel = new GameSessionViewModel(_player, _messages, _gameMap, _currentLocation);
+            _gameSessionViewModel = new GameSessionViewModel(
+                _player, 
+                _messages, 
+                _gameMap, 
+                _currentLocation);
             GameSessionView gameSessionView = new GameSessionView(_gameSessionViewModel);
 
             gameSessionView.DataContext = _gameSessionViewModel;
 
             gameSessionView.Show();
 
-            if (_playerSetupView.ShowActivated)
-            {
-                _playerSetupView.Close();
-            }
+            //if (_playerSetupView.ShowActivated)
+            //{
+            //    _playerSetupView.Close();
+            //}
             
 
         }
 
         private void InitializeDataSet()
         {
-
+            
             _messages = GameData.InitialMessages(_player);
             _gameMap = GameData.GameMapData();
             _currentLocation = GameData.InitialGameMapLocation();

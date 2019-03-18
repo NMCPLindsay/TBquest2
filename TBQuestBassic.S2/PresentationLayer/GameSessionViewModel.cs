@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TBQuestBasic.Models;
 using TBQuestBasic.DataLayer;
+using System.Collections.ObjectModel;
 
 namespace TBQuestBasic.PresentationLayer
 {
@@ -14,6 +15,21 @@ namespace TBQuestBasic.PresentationLayer
         private List<string> _messages;
         private Map _gameMap;
         private Location _currentLocation;
+        private ObservableCollection<Location> _accessibleLocations;
+        
+
+  
+
+        public ObservableCollection<Location> AccessibleLocations
+        {
+            get { return _accessibleLocations; }
+            set { _accessibleLocations = value; }
+        }
+
+
+
+
+
 
         public Location CurrentLocation
         {
@@ -28,7 +44,7 @@ namespace TBQuestBasic.PresentationLayer
             set { _gameMap = value; }
         }
 
-
+        
 
         public Player Player
         {
@@ -47,6 +63,9 @@ namespace TBQuestBasic.PresentationLayer
             return string.Join("\n\n", _messages);
         }
 
+        
+         
+
         public GameSessionViewModel()
         {
 
@@ -59,6 +78,7 @@ namespace TBQuestBasic.PresentationLayer
             _gameMap = gameMap;
             _currentLocation = currentLocation;
             _messages = initialMessages;
+            _accessibleLocations = gameMap.AccessibleLocations;
         }
     }
 }
