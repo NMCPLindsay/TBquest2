@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TBQuestBasic.Models
 {
-    public abstract class Character
+    public abstract class Character 
     {
         public enum Races
         {
@@ -24,8 +24,8 @@ namespace TBQuestBasic.Models
 
         public string Bio
         {
-            get { return _bio; }
-            set { _bio = GetPlayerBio(); }
+            get { return GetPlayerBio(); }
+            set { _bio = value; }
         }
 
 

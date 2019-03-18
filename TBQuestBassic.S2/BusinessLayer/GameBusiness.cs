@@ -14,7 +14,7 @@ namespace TBQuestBasic.BusinessLayer
         GameSessionViewModel _gameSessionViewModel;
         Player _player;
         List<string> _messages;
-        bool _newPlayer = false;
+        bool _newPlayer = true;
         PlayerSetupView _playerSetupView;
         Map _gameMap;
         Location _currentLocation;
@@ -63,11 +63,11 @@ namespace TBQuestBasic.BusinessLayer
 
             gameSessionView.Show();
 
-            //if (_playerSetupView.ShowActivated)
-            //{
-            //    _playerSetupView.Close();
-            //}
-            
+            if (_playerSetupView.ShowActivated)
+            {
+                _playerSetupView.Close();
+            }
+
 
         }
 

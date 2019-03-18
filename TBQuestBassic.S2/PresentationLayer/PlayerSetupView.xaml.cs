@@ -51,6 +51,8 @@ namespace TBQuestBasic.PresentationLayer
             {
                 errorMessage += "Player name is required.\n";
             }
+            
+          
             else
             {
                 _player.Name = PlayerNameTextBox.Text;
@@ -60,23 +62,27 @@ namespace TBQuestBasic.PresentationLayer
 
             return errorMessage == "" ? true : false;
         }
+
+
         private void SetPlayerImage()
         {
-
-            
 
             if (PlayerRaceComboBox.SelectedItem.Equals("Mandalorian"))
             {
                 PlayerImage.Source = new BitmapImage(new Uri(@"C:\Users\phili\Desktop\Application Dev\TBQuestBasic\TBQuestBassic\Assets\mandolorain.jpg"));
+                BioTextBox.Text = "The mandalorians were a proud race of bounty hunters. The most famous of which are the late Jango Fett and his son, Boba Fett.";
             }
             else if (PlayerRaceComboBox.SelectedItem.Equals("Human"))
             {
                 PlayerImage.Source = new BitmapImage(new Uri(@"C:\Users\phili\Desktop\Application Dev\TBQuestBasic\TBQuestBassic\Assets\human.jpg"));
+                BioTextBox.Text = "The humans are a poplulace sentiant race primarily from Corellia. They are found all over the galaxy and are a balanced race. Notable humans are Han Solo and Luke Skywalker.";
             }
             else if (PlayerRaceComboBox.SelectedItem.Equals("Wookie"))
             {
                 PlayerImage.Source = new BitmapImage(new Uri(@"C:\Users\phili\Desktop\Application Dev\TBQuestBasic\TBQuestBassic\Assets\wookie.jpg"));
+                BioTextBox.Text = "Hailing from their homeworld of Kashyyk, Wookies are tall, furry creatures. Known for feirce strength, they were often used as slaves by the Empire. Noteable wookies are Chewbacca and Gungi";
             }
+           
 
         }
 
@@ -86,9 +92,10 @@ namespace TBQuestBasic.PresentationLayer
 
             if (IsValidInput(out errorMessage))
             {
+                
                 Enum.TryParse(PlayerRaceComboBox.SelectionBoxItem.ToString(), out Character.Races race);
                 Enum.TryParse(AlignmentComboBox.SelectionBoxItem.ToString(), out Player.Alignments alignment);
-
+                
               
                 _player.Race = race;
                 _player.Align = alignment;
@@ -96,6 +103,8 @@ namespace TBQuestBasic.PresentationLayer
                 _player.HitPoints = 100;
                 _player.Level = 1;
                 _player.Name = PlayerNameTextBox.Text;
+                _player.ImgFileName = PlayerImage.Source.ToString();
+                _player.Bio = BioTextBox.Text;
                 Visibility = Visibility.Hidden;
             }
             else
@@ -108,7 +117,18 @@ namespace TBQuestBasic.PresentationLayer
 
         private void CharacterViewButton_Click(object sender, RoutedEventArgs e)
         {
-            SetPlayerImage();
+            string errorMessage;
+
+            if (IsValidInput(out errorMessage))
+            {
+                SetPlayerImage();
+                ErrorMsgLabel.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                ErrorMsgLabel.Visibility = Visibility.Visible;
+                ErrorMsgLabel.Content = errorMessage;
+            }
         }
     }
 }

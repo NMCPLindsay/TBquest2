@@ -109,7 +109,7 @@
 
             </StackPanel>
             <StackPanel Grid.Column="1">
-                <Border Style="{StaticResource BorderStyle}" Margin="0,2,0,-2"/>
+                <Border Style="{StaticResource BorderStyle}" Margin="2,2,2,2"/>
                 <Label Style="{StaticResource HeaderStyle}"
                     Content="Navigation and Messages"/>
                 <Label Style="{StaticResource DetailLabelStyle}" HorizontalAlignment="Center" Content="Location: "/>
