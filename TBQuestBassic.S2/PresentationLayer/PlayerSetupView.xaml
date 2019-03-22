@@ -92,9 +92,7 @@
                 <Image Name="PlayerImage" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </StackPanel>
         </Grid>
-        <Grid Grid.Row="2" Grid.Column="0">
-            <Button Name="CharacterViewButton" Style="{StaticResource ButtonStyle}" Margin="100,0,100, 50"  Content="View Image"  Height="Auto" Width="Auto"  Grid.Row="1" Click="CharacterViewButton_Click"/>
-        </Grid>
+        <Grid Grid.Row="2" Grid.Column="0"/>
 
 
         <Grid Grid.Row="0" Grid.Column="1">
@@ -112,7 +110,7 @@
             <Label Grid.Row="1" Content="Name:" Style="{StaticResource SubHeaderStyle}"/>
             <TextBox Grid.Row="1" Name="PlayerNameTextBox" HorizontalAlignment="Right" Style="{StaticResource DetailTextBoxStyle}" Width="331" />
             <Label Grid.Row="2" Style="{StaticResource SubHeaderStyle}" Content="Race:"/>
-            <ComboBox Grid.Row="2" Name="PlayerRaceComboBox" HorizontalAlignment="Right" Margin="0,2,2,2" Width="331"/>
+            <ComboBox Grid.Row="2" Name="PlayerRaceComboBox" HorizontalAlignment="Right" Margin="0,2,2,2" Width="331" SelectionChanged="PlayerRaceComboBox_SelectionChanged"/>
 
             <Label Grid.Row="3" Content="Alignment:" Style="{StaticResource SubHeaderStyle}"/>
             <ComboBox Grid.Row="3" Name="AlignmentComboBox" HorizontalAlignment="Right" Margin="0,2,2,2" Width="331"/>

@@ -12,7 +12,7 @@ namespace TBQuestBasic.BusinessLayer
     public class GameBusiness
     {
         GameSessionViewModel _gameSessionViewModel;
-        Player _player;
+        Player _player = new Player();
         List<string> _messages;
         bool _newPlayer = true;
         PlayerSetupView _playerSetupView;

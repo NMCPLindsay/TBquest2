@@ -12,7 +12,7 @@ namespace TBQuestBasic.PresentationLayer
     public class GameSessionViewModel
     {
         private Player _player;
-        private List<string> _messages;
+        private List<string> _messages = new List<string>();
         private Map _gameMap;
         private Location _currentLocation;
         private ObservableCollection<Location> _accessibleLocations;
@@ -79,6 +79,8 @@ namespace TBQuestBasic.PresentationLayer
             _currentLocation = currentLocation;
             _messages = initialMessages;
             _accessibleLocations = gameMap.AccessibleLocations;
+
+
         }
     }
 }

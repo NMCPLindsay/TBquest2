@@ -115,7 +115,9 @@ namespace TBQuestBasic.PresentationLayer
         
         }
 
-        private void CharacterViewButton_Click(object sender, RoutedEventArgs e)
+      
+
+        private void PlayerRaceComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string errorMessage;
 
