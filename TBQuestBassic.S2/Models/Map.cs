@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using TBQuestBasic.DataLayer;
 
 namespace TBQuestBasic.Models
 {
-    public class Map
+    public class Map 
     {
         private ObservableCollection<Location> _locations;
         private Location _currentLocation;
@@ -30,22 +31,47 @@ namespace TBQuestBasic.Models
         {
             get
             {
+                Move();
                 ObservableCollection<Location> accessibleLocations = new ObservableCollection<Location>();
-                foreach (var location in _locations)
+                foreach (var location in Locations)
                 {
-                    if (location.IsAccessible == true)
+                    if (_currentLocation.DistanceFromCoruscant > location.DistanceFromCoruscant)
                     {
-                        accessibleLocations.Add(location);
+                        double distance = _currentLocation.DistanceFromCoruscant - location.DistanceFromCoruscant;
+                        location.IsAccessible = IsAccessibleLocation(distance);
                     }
+                    else if (_currentLocation.DistanceFromCoruscant < location.DistanceFromCoruscant)
+                    {
+                        double distance = location.DistanceFromCoruscant - _currentLocation.DistanceFromCoruscant;
+                        location.IsAccessible = IsAccessibleLocation(distance);
+                    }
+                    accessibleLocations.Add(location);
                 }
                 return accessibleLocations;
             }
         }
-       
+        internal static bool IsAccessibleLocation(double distance)
+        {
+            Ship playerShip = GameData.ShipData();
+
+            if (distance > playerShip.Range)
+            {
+                return false;
+            }
+            else if (distance <= playerShip.Range)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
 
         public void Move(Location location)
         {
-            _currentLocation = location;
+            _currentLocation = GameData.InitialGameMapLocation();
 
         }
 	

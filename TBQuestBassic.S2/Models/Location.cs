@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TBQuestBasic.Models
+namespace TBQuestBasic.Models 
 {
-    public class Location
+    public class Location : ObservableObject
     {
         private int _id;
         private string _name;
@@ -25,7 +25,11 @@ namespace TBQuestBasic.Models
         public bool IsAccessible
         {
             get { return _isAccessible; }
-            set { _isAccessible = value; }
+            set
+            {
+                _isAccessible = value;
+                
+            }
         }
 
 

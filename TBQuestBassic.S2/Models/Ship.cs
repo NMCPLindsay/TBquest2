@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TBQuestBasic.Models
 {
-    public class Ship
+    public class Ship : ObservableObject
     {
         public enum ShipClasses
         {
@@ -42,6 +42,9 @@ namespace TBQuestBasic.Models
             set { _shipClass = value; }
         }
 
+        public Ship()
+        {
 
+        }
     }
 }

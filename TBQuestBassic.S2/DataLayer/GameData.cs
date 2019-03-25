@@ -33,6 +33,17 @@ namespace TBQuestBasic.DataLayer
 
         }
 
+        public static Ship ShipData()
+        {
+            return new Ship
+            {
+                ShipName = "Slave-B",
+                Range = 250,
+                ShipClass = Ship.ShipClasses.Transport
+            };
+
+        }
+
         public static List<string> InitialMessages(Player player)
         {
             return new List<string>
@@ -48,6 +59,8 @@ namespace TBQuestBasic.DataLayer
 
         
 
+
+
         public static Map GameMapData()
         {
             Map gameMap = new Map();
@@ -62,8 +75,9 @@ namespace TBQuestBasic.DataLayer
                     " Tatooine was orbiting its two suns, Tatoo I and Tatoo II. The whole planet was covered in harsh deserts, and only a small part of its northern hemisphere could sustain intelligent life." +
                     " The landscape was covered with sand dunes, mountains, and canyons, which made traversing the planet very difficult." +
                     " Due to the absence of surface water, those who lived on Tatooine had to draw moisture through the dry air.",
-                    IsAccessible = true,
                     DistanceFromCoruscant = 250
+                    
+                    
 
                 },
                 new Location()
@@ -76,7 +90,7 @@ namespace TBQuestBasic.DataLayer
                     "From space, Coruscant's luminosity was slightly dimmed by the planet's hazy cloud cover. The planet's weather patterns were affected by the troposphere-piercing buildings that covered the planet's surface. " +
                     "Inside the tallest buildings, enormous differences of temperature and air pressure from top to bottom produced unusual and unpredictable microclimates. As such, Coruscant had its own weather-control system. " +
                     "Thousands of years of development destroyed the planet's ancient mountains and seas. Monument Plaza housed the top of Coruscant's last remaining mountain peak.",
-                    IsAccessible = true,
+                    
                     DistanceFromCoruscant = 0
                 },
                 new Location()
@@ -87,7 +101,7 @@ namespace TBQuestBasic.DataLayer
                     "Five planets existed between Hoth and its sun, while an asteroid belt surrounded the planet with meteors occasionally striking the surface. Its surface was covered with glaciers and frozen ice plains." +
                     " The temperature, although always frigid, was known to drop to -60°C come nightfall. Although devoid of intelligent life, " +
                     "Hoth was home to fifteen species of large gray snow lizards called tauntauns and to a species of towering predators known as wampas.",
-                    IsAccessible = true,
+                    
                     DistanceFromCoruscant = 500
 
                 }
@@ -101,6 +115,9 @@ namespace TBQuestBasic.DataLayer
 
 
         }
+
+    
+
         public static Location InitialGameMapLocation()
         {
             return new Location()
@@ -113,7 +130,7 @@ namespace TBQuestBasic.DataLayer
                     "From space, Coruscant's luminosity was slightly dimmed by the planet's hazy cloud cover. The planet's weather patterns were affected by the troposphere-piercing buildings that covered the planet's surface. " +
                     "Inside the tallest buildings, enormous differences of temperature and air pressure from top to bottom produced unusual and unpredictable microclimates. As such, Coruscant had its own weather-control system. " +
                     "Thousands of years of development destroyed the planet's ancient mountains and seas. Monument Plaza housed the top of Coruscant's last remaining mountain peak.",
-                IsAccessible = true
+                
 
             };
 

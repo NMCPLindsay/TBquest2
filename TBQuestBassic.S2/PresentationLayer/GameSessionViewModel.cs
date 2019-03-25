@@ -16,9 +16,17 @@ namespace TBQuestBasic.PresentationLayer
         private Map _gameMap;
         private Location _currentLocation;
         private ObservableCollection<Location> _accessibleLocations;
-        
+        private Ship _playerShip;
 
-  
+        public Ship PlayerShip
+        {
+            get { return _playerShip; }
+            set { _playerShip = value; }
+        }
+
+
+
+
 
         public ObservableCollection<Location> AccessibleLocations
         {
@@ -71,7 +79,7 @@ namespace TBQuestBasic.PresentationLayer
 
         }
 
-        public GameSessionViewModel(Player player, List<string> initialMessages, Map gameMap, Location currentLocation)
+        public GameSessionViewModel(Player player, List<string> initialMessages, Map gameMap, Location currentLocation, Ship playerShip)
         {
 
             _player = player;
@@ -79,7 +87,7 @@ namespace TBQuestBasic.PresentationLayer
             _currentLocation = currentLocation;
             _messages = initialMessages;
             _accessibleLocations = gameMap.AccessibleLocations;
-
+            _playerShip = playerShip;
 
         }
     }

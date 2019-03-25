@@ -18,6 +18,7 @@ namespace TBQuestBasic.BusinessLayer
         PlayerSetupView _playerSetupView;
         Map _gameMap;
         Location _currentLocation;
+        Ship _playerShip;
 
 
         public GameBusiness()
@@ -56,7 +57,8 @@ namespace TBQuestBasic.BusinessLayer
                 _player, 
                 _messages, 
                 _gameMap, 
-                _currentLocation);
+                _currentLocation,
+                _playerShip);
             GameSessionView gameSessionView = new GameSessionView(_gameSessionViewModel);
 
             gameSessionView.DataContext = _gameSessionViewModel;
@@ -77,6 +79,7 @@ namespace TBQuestBasic.BusinessLayer
             _messages = GameData.InitialMessages(_player);
             _gameMap = GameData.GameMapData();
             _currentLocation = GameData.InitialGameMapLocation();
+            _playerShip = GameData.ShipData();
 
         }
     }
