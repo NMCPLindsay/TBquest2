@@ -12,6 +12,15 @@ namespace TBQuestBasic.Models
         private string _name;
         private string _description;
         private bool _isAccessible;
+        private double _distanceFromCoruscant;
+
+        public double DistanceFromCoruscant
+        {
+            get { return _distanceFromCoruscant; }
+            set { _distanceFromCoruscant = value; }
+        }
+
+
 
         public bool IsAccessible
         {
