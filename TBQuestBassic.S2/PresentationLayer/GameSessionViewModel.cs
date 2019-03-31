@@ -9,7 +9,7 @@ using System.Collections.ObjectModel;
 
 namespace TBQuestBasic.PresentationLayer
 {
-    public class GameSessionViewModel
+    public class GameSessionViewModel : ObservableObject
     {
         private Player _player;
         private List<string> _messages = new List<string>();
@@ -30,8 +30,18 @@ namespace TBQuestBasic.PresentationLayer
 
         public ObservableCollection<Location> AccessibleLocations
         {
-            get { return _accessibleLocations; }
-            set { _accessibleLocations = value; }
+            get
+            {
+                ObservableCollection<Location> _accessibleLocations = new ObservableCollection<Location>();
+                _accessibleLocations = ShipRangeToDistance(_gameMap, _currentLocation, _playerShip);
+                return _accessibleLocations;
+            }
+            set
+            {
+                _accessibleLocations = value;
+                OnPropertyChanged(nameof(AccessibleLocations));
+                ;
+            }
         }
 
 
@@ -41,8 +51,16 @@ namespace TBQuestBasic.PresentationLayer
 
         public Location CurrentLocation
         {
-            get { return _currentLocation; }
-            set => _currentLocation = value;
+            get
+            {
+                
+                return _currentLocation;
+            }
+            set 
+            {
+                _currentLocation = value;
+                OnPropertyChanged(nameof(CurrentLocation));
+            }
         }
 
 
@@ -84,11 +102,65 @@ namespace TBQuestBasic.PresentationLayer
 
             _player = player;
             _gameMap = gameMap;
-            _currentLocation = currentLocation;
-            _messages = initialMessages;
-            _accessibleLocations = gameMap.AccessibleLocations;
+            _currentLocation = GameData.initialLocation(GameMap);
+            _messages = initialMessages;            
             _playerShip = playerShip;
+            _accessibleLocations = ShipRangeToDistance(GameMap, CurrentLocation, PlayerShip);
+        }
 
+        public static ObservableCollection<Location> ShipRangeToDistance(Map map, Location currentLocation, Ship ship)
+        {
+
+                      
+            double distanceFromCurrentLocation;
+            
+            ObservableCollection<Location> accessibleLocations = new ObservableCollection<Location>();
+
+            foreach (Location location in GameData.GameMapData().Locations)
+            {
+                if (location.DistanceFromCoruscant >= currentLocation.DistanceFromCoruscant)
+                {
+                    distanceFromCurrentLocation = location.DistanceFromCoruscant - currentLocation.DistanceFromCoruscant;
+                    if (ship.Range >= distanceFromCurrentLocation && location.Name != currentLocation.Name)
+                    {
+                        accessibleLocations.Add(location);
+                        location.IsAccessible = true;
+
+                    }
+                    else
+                    {
+                        accessibleLocations.Remove(location);
+                        location.IsAccessible = false;
+                    }
+                }
+                else if (location.DistanceFromCoruscant <= currentLocation.DistanceFromCoruscant)
+                {
+                    distanceFromCurrentLocation = currentLocation.DistanceFromCoruscant - location.DistanceFromCoruscant;
+                    if (ship.Range >= distanceFromCurrentLocation && location.Name != currentLocation.Name)
+                    {
+                        accessibleLocations.Add(location);
+                        location.IsAccessible = true;
+                    }
+                    else
+                    {
+                        accessibleLocations.Remove(location);
+                        location.IsAccessible = false;
+                    }
+                }
+                
+            
+
+            }
+            return accessibleLocations;
+        }
+
+        public Location OnMove()
+        {
+           
+            _currentLocation = CurrentLocation;
+            _accessibleLocations = ShipRangeToDistance(GameMap, CurrentLocation, PlayerShip);
+        
+            return _currentLocation;
         }
     }
 }

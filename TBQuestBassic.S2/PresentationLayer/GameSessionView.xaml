@@ -117,7 +117,7 @@
                 <Label Style="{StaticResource DetailLabelStyle}" HorizontalAlignment="Center" Content="Location Description: "/>
                 <TextBox Name="CurrentLocationDescriptionTextBox" Style="{StaticResource DetailTextBoxStyle}" HorizontalAlignment="Center" Text="{Binding CurrentLocation.Description}" TextWrapping="Wrap" Width="700" TextAlignment="Left" VerticalContentAlignment="Top" Height="200"/>
                 <Label Style="{StaticResource DetailLabelStyle}" HorizontalAlignment="Center" Content="Available Locations:"/>
-                <ListBox Width="300" ItemsSource="{Binding AccessibleLocations}" SelectedItem="{Binding CurrentLocation}">
+                <ListBox Width="300" ItemsSource="{Binding AccessibleLocations}" SelectedItem="{Binding CurrentLocation}" SelectionChanged="ListBox_SelectionChanged">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Margin="0">
@@ -181,8 +181,7 @@
                 <Label Content="Ship: " Style="{StaticResource DetailLabelStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin ="100,0,0,0"/>
                 <Label Content="Range:" Style="{StaticResource DetailLabelStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,50,0,0"/>
                 <Label Content="Type:" Style="{StaticResource DetailLabelStyle}" HorizontalAlignment="left" VerticalAlignment="Top" Margin="100,25,0,0"/>
-                <Label Content="Class:" Style="{StaticResource DetailLabelStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin ="100,75,0,0"/>
-                
+
                 <TextBox Name="ShipNameLabel" Text="{Binding PlayerShip.ShipName}" Style="{StaticResource DetailTextBoxStyle}"  VerticalAlignment="Top" HorizontalAlignment="Left" Margin ="150,0,0,0"/>
                 <TextBox Name="ShipRangeLabel" Text="{Binding PlayerShip.Range}" Style="{StaticResource DetailTextBoxStyle}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="150,50,0,0"/>
                 <TextBox Name="ShipTypeLabel" Text="{Binding PlayerShip.ShipClass}" Style="{StaticResource DetailTextBoxStyle}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="150,25,0,0"/>

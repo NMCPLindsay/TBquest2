@@ -8,6 +8,7 @@ namespace TBQuestBasic.Models
 {
     public class Ship : ObservableObject
     {
+        #region ENUMS
         public enum ShipClasses
         {
             Fighter,
@@ -15,12 +16,16 @@ namespace TBQuestBasic.Models
             Freighter,
             Transport
 
-        }
 
+        }
+        #endregion
+        #region FIELDS
         private ShipClasses _shipClass;
         private double _range;
-        private string _shipName;   
+        private string _shipName;
+        #endregion
 
+        #region PROPERTIES
         public string ShipName
         {
             get { return _shipName; }
@@ -41,10 +46,14 @@ namespace TBQuestBasic.Models
             get { return _shipClass; }
             set { _shipClass = value; }
         }
+        #endregion
 
+        #region CONSTRUCTORS
         public Ship()
         {
 
         }
+        #endregion
+
     }
 }

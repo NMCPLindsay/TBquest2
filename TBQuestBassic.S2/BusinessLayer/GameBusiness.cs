@@ -78,7 +78,7 @@ namespace TBQuestBasic.BusinessLayer
             
             _messages = GameData.InitialMessages(_player);
             _gameMap = GameData.GameMapData();
-            _currentLocation = GameData.InitialGameMapLocation();
+            _currentLocation = _gameMap.CurrentLocation;
             _playerShip = GameData.ShipData();
 
         }

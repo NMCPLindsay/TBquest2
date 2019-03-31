@@ -35,5 +35,11 @@ namespace TBQuestBasic.PresentationLayer
         {
 
         }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _gameSessionViewModel.OnMove();
+            
+        }
     }
 }
