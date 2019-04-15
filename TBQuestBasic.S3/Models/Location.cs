@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace TBQuestBasic.Models 
 {
@@ -14,9 +15,45 @@ namespace TBQuestBasic.Models
         private string _description;
         private bool _isAccessible;
         private double _distanceFromCoruscant;
+        private ObservableCollection<GameObjectQuantity> _gameObjects;
+
+        private double _distanceFromTattooine;
+        private double _distanceFromHoth;
+
+   
+
+
+
+
+
+
+
+
         #endregion
 
         #region PROPERTIES
+        public ObservableCollection<GameObjectQuantity> GameObjects
+        {
+            get { return _gameObjects; }
+            set { _gameObjects = value; }
+        }
+
+
+        public double DistanceFromHoth
+        {
+            get { return _distanceFromHoth; }
+            set { _distanceFromHoth = value; }
+        }
+
+
+
+        public double DistanceFromTattooine
+        {
+            get { return _distanceFromTattooine; }
+            set { _distanceFromTattooine = value; }
+        }
+
+
         public double DistanceFromCoruscant
         {
             get { return _distanceFromCoruscant; }
@@ -61,7 +98,7 @@ namespace TBQuestBasic.Models
 
         public Location()
         {
-
+            
         }
 
         #endregion

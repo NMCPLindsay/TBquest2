@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TBQuestBasic.Models
 {
-    public class Ship : ObservableObject
+    public class Ship : GameObjects
     {
         #region ENUMS
         public enum ShipClasses
@@ -22,15 +22,11 @@ namespace TBQuestBasic.Models
         #region FIELDS
         private ShipClasses _shipClass;
         private double _range;
-        private string _shipName;
+      
         #endregion
 
         #region PROPERTIES
-        public string ShipName
-        {
-            get { return _shipName; }
-            set { _shipName = value; }
-        }
+  
 
 
 
@@ -49,11 +45,19 @@ namespace TBQuestBasic.Models
         #endregion
 
         #region CONSTRUCTORS
-        public Ship()
+        public Ship(int id, string name, double range, string description, ShipClasses shipClass)
+            :base(id, name, description)
         {
+            ShipClass = shipClass;
+            Range = range;
 
         }
         #endregion
 
+
+        public override string InformationString()
+        {
+            return $"{Name}: {Description}\nClass: {ShipClass} Range: {Range}";
+        }
     }
 }

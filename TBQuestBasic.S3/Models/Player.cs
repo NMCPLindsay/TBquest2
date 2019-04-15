@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TBQuestBasic.DataLayer;
+using System.Collections.ObjectModel;
 
 namespace TBQuestBasic.Models
 {
@@ -22,6 +23,50 @@ namespace TBQuestBasic.Models
         private double _hitPoints;
         private double _exp;
         private string _imgFileName;
+        private ObservableCollection<GameObjectQuantity> _inventory;
+        private ObservableCollection<GameObjectQuantity> _weapons;
+        private ObservableCollection<GameObjectQuantity> _armor;
+        private ObservableCollection<GameObjectQuantity> _elixirs;
+        private ObservableCollection<GameObjectQuantity> _ships;
+
+        public ObservableCollection<GameObjectQuantity> Ships
+        {
+            get { return _ships; }
+            set { _ships = value; }
+        }
+
+
+        public ObservableCollection<GameObjectQuantity> Elixirs
+        {
+            get { return _elixirs; }
+            set { _elixirs = value; }
+        }
+
+
+
+        public ObservableCollection<GameObjectQuantity> Armor
+        {
+            get { return _armor; }
+            set { _armor = value; }
+        }
+
+
+        public ObservableCollection<GameObjectQuantity> Weapons
+        {
+            get { return _weapons; }
+            set { _weapons = value; }
+        }
+
+
+        public ObservableCollection<GameObjectQuantity> Inventory
+        {
+            get { return _inventory; }
+            set { _inventory = value; }
+        }
+
+
+
+
 
         public string ImgFileName
         {
@@ -68,7 +113,11 @@ namespace TBQuestBasic.Models
 
         public Player()
         {
-
+            _armor = new ObservableCollection<GameObjectQuantity>();
+            _elixirs = new ObservableCollection<GameObjectQuantity>();
+            _inventory = new ObservableCollection<GameObjectQuantity>();
+            _ships = new ObservableCollection<GameObjectQuantity>();
+            _weapons = new ObservableCollection<GameObjectQuantity>();
         
 
         }
@@ -135,5 +184,62 @@ namespace TBQuestBasic.Models
 
             return Greeting;
         }
+
+        public void UpdateInventoryCategories()
+        {
+            Elixirs.Clear();
+            Ships.Clear();
+            Weapons.Clear();
+            Armor.Clear();
+
+            foreach (var gameItemQuantity in _inventory)
+            {
+                if (gameItemQuantity.GameObject is Weapons) Weapons.Add(gameItemQuantity);
+                if (gameItemQuantity.GameObject is Armor) Armor.Add(gameItemQuantity);
+                if (gameItemQuantity.GameObject is Ship) Ships.Add(gameItemQuantity);
+                if (gameItemQuantity.GameObject is Elixirs) Elixirs.Add(gameItemQuantity);
+            }
+        }
+
+        public void AddGameItemQuantityToInventory(GameObjectQuantity selectedGameObjectQuantity)
+        {
+            GameObjectQuantity gameObjectQuantity = _inventory.FirstOrDefault(i => i.GameObject.Id == selectedGameObjectQuantity.GameObject.Id);
+
+            if (gameObjectQuantity == null)
+            {
+                GameObjectQuantity newGameObjectQuantity = new GameObjectQuantity();
+                newGameObjectQuantity.GameObject = selectedGameObjectQuantity.GameObject;
+                newGameObjectQuantity.Quantity = 1;
+
+                _inventory.Add(newGameObjectQuantity);
+            }
+            else
+            {
+                gameObjectQuantity.Quantity++;
+            }
+            UpdateInventoryCategories();
+        }
+
+        public void RemoveGameItemQuantityFromInventory(GameObjectQuantity selectedGameObjectQuantity)
+        {
+            GameObjectQuantity gameObjectQuantity = _inventory.FirstOrDefault(i => i.GameObject.Id == selectedGameObjectQuantity.GameObject.Id);
+
+            if (gameObjectQuantity != null)
+            {
+
+                if (selectedGameObjectQuantity.Quantity == 1)
+                {
+                    _inventory.Remove(gameObjectQuantity);
+                }
+
+                else
+                {
+                    gameObjectQuantity.Quantity--;
+                }
+            }
+            UpdateInventoryCategories();
+            
+        }
+
     }
 }

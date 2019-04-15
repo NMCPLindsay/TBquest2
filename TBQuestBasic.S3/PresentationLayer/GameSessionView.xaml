@@ -105,6 +105,39 @@
 
                 <Label Style="{StaticResource HeaderStyle}"
                     Content="Action Interface"/>
+                <TabControl 
+                                    x:Name="LocationInfoTabControl"
+                                    Width="350">
+                    <TabItem Header="Items"
+                                        x:Name="ItemsInfoTabItem">
+                        <DataGrid 
+                                            x:Name="LocationItemsDataGrid"
+                                            Height="150"
+                                            ItemsSource="{Binding CurrentLocation.GameObjects}" 
+                                            SelectedItem="{Binding CurrentGameItem}"
+                                            AutoGenerateColumns="False"
+                                            HeadersVisibility="Column">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn 
+                                                    Header="Description" 
+                                                    IsReadOnly="True"                 
+                                                    Binding="{Binding GameItem.Information, Mode=OneWay}"
+                                                    Width="*">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style>
+                                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn 
+                                                    Header="Qty"
+                                                    IsReadOnly="True"
+                                                    Width="Auto"
+                                                    Binding="{Binding Quantity, Mode=OneWay}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </TabItem>
+                </TabControl>
 
 
             </StackPanel>
@@ -135,6 +168,103 @@
 
                     <Label Style="{StaticResource HeaderStyle}"
                     Content="Inventory Interface"/>
+
+                    <TabControl 
+                            x:Name="PlayerDataTabControl"
+                            Width="auto">
+
+                        <TabItem Header="Armor"
+                                x:Name="ArmorTabItem">
+                            <DataGrid 
+                                    x:Name="ArmorDataGrid"
+                                    ItemsSource="{Binding Player.Armor}"
+                                    SelectedItem="{Binding CurrentGameItem}"
+                                    AutoGenerateColumns="False"
+                                    HeadersVisibility="Column">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Name"
+                                                Binding="{Binding GameItem.Name, Mode=OneWay}"
+                                                Width="*"/>
+                                    <DataGridTextColumn Header="Qty"
+                                                IsReadOnly="True"
+                                                Width="Auto"
+                                                Binding="{Binding Quantity, Mode=OneWay}"/>
+                                    <DataGridTextColumn Header="Value"
+                                                Binding="{Binding GameItem.Value, Mode=OneWay}"
+                                                Width="Auto"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </TabItem>
+
+                        <TabItem Header="Weapons"
+                                x:Name="WeaponsTabItem">
+                            <DataGrid 
+                                    x:Name="WeaponsDataGrid"
+                                    ItemsSource="{Binding Player.Weapons}"
+                                    SelectedItem="{Binding CurrentGameItem}"
+                                    AutoGenerateColumns="False"
+                                    HeadersVisibility="Column">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Name"
+                                                Binding="{Binding GameItem.Name, Mode=OneWay}"
+                                                Width="*"/>
+                                    <DataGridTextColumn Header="Qty"
+                                                IsReadOnly="True"
+                                                Width="Auto"
+                                                Binding="{Binding Quantity, Mode=OneWay}"/>
+                                   
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </TabItem>
+
+                        
+
+                        <TabItem Header="Elixirs"
+                                x:Name="ElixirsTabItem">
+                            <DataGrid 
+                                    x:Name="ElixirsDataGrid"
+                                    ItemsSource="{Binding Player.Elixirs}"
+                                    SelectedItem="{Binding CurrentGameItem}"
+                                    AutoGenerateColumns="False"
+                                    HeadersVisibility="Column">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Name"
+                                                Binding="{Binding GameItem.Name, Mode=OneWay}"
+                                                Width="*"/>
+                                    <DataGridTextColumn Header="Qty"
+                                                IsReadOnly="True"
+                                                Width="Auto"
+                                                Binding="{Binding Quantity, Mode=OneWay}"/>
+                                    <DataGridTextColumn Header="Value"
+                                                Binding="{Binding GameItem.Value, Mode=OneWay}"
+                                                Width="Auto"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </TabItem>
+                        <TabItem Header="Ship"
+                                x:Name="ShipTabItem">
+                        <DataGrid 
+                                    x:Name="ShipsDataGrid"
+                                    ItemsSource="{Binding Player.Ships}"
+                                    SelectedItem="{Binding CurrentGameItem}"
+                                    AutoGenerateColumns="False"
+                                    HeadersVisibility="Column">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Name"
+                                                Binding="{Binding GameItem.Name, Mode=OneWay}"
+                                                Width="*"/>
+                                <DataGridTextColumn Header="Qty"
+                                                IsReadOnly="True"
+                                                Width="Auto"
+                                                Binding="{Binding Quantity, Mode=OneWay}"/>
+                                <DataGridTextColumn Header="Value"
+                                                Binding="{Binding GameItem.Value, Mode=OneWay}"
+                                                Width="Auto"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        </TabItem>
+
+                    </TabControl>
 
                 </StackPanel>
 
@@ -177,17 +307,7 @@
                 </Grid>
                 <StackPanel Grid.Column="2" Orientation="Vertical"/>
             </Grid>
-            <Grid Grid.Column="2">
-                <Label Content="Ship: " Style="{StaticResource DetailLabelStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin ="100,0,0,0"/>
-                <Label Content="Range:" Style="{StaticResource DetailLabelStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,50,0,0"/>
-                <Label Content="Type:" Style="{StaticResource DetailLabelStyle}" HorizontalAlignment="left" VerticalAlignment="Top" Margin="100,25,0,0"/>
-
-                <TextBox Name="ShipNameLabel" Text="{Binding PlayerShip.ShipName}" Style="{StaticResource DetailTextBoxStyle}"  VerticalAlignment="Top" HorizontalAlignment="Left" Margin ="150,0,0,0"/>
-                <TextBox Name="ShipRangeLabel" Text="{Binding PlayerShip.Range}" Style="{StaticResource DetailTextBoxStyle}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="150,50,0,0"/>
-                <TextBox Name="ShipTypeLabel" Text="{Binding PlayerShip.ShipClass}" Style="{StaticResource DetailTextBoxStyle}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="150,25,0,0"/>
-                 
-                
-            </Grid>
+            <Grid Grid.Column="2"/>
 
         </Grid>
     </Grid>

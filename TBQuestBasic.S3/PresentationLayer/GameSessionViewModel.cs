@@ -109,16 +109,17 @@ namespace TBQuestBasic.PresentationLayer
             _player = player;
             _gameMap = gameMap;
             _currentLocation = gameMap.CurrentLocation;
+            
             _messages = initialMessages;            
-            _playerShip = playerShip;
+            
             _accessibleLocations = gameMap.AccessibleLocations;
         }
 
-     
+
         public void OnMove()
         {
             _gameMap.AccessibleLocations = GameData.ShipRangeToDistance(CurrentLocation, PlayerShip);
         }
-        
+
     }
 }

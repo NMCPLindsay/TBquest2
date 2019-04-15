@@ -16,12 +16,8 @@ namespace TBQuestBasic.Models
         private Location _currentLocation;
         private ObservableCollection<Location> _accessibleLocations;
         private Location _initialLocation;
+        private List<GameObjects> _standardGameObjects;
 
-        public Location InitialLocation
-        {
-            get { return _initialLocation; }
-            set { _initialLocation = value; }
-        }
 
 
 
@@ -29,6 +25,19 @@ namespace TBQuestBasic.Models
         #endregion
 
         #region PROPERTIES
+        public List<GameObjects> StandardGameObjects
+        {
+            get { return _standardGameObjects; }
+            set { _standardGameObjects = value; }
+        }
+
+
+        public Location InitialLocation
+        {
+            get { return _initialLocation; }
+            set { _initialLocation = value; }
+        }
+
 
         public ObservableCollection<Location> AccessibleLocations
         {
@@ -69,8 +78,7 @@ namespace TBQuestBasic.Models
 
         public Map()
         {
-            
-            
+        
         }
         
      
