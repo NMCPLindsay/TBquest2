@@ -82,6 +82,7 @@
     <Compile Include="Models\Armor.cs" />
     <Compile Include="Models\Character.cs" />
     <Compile Include="Models\Elixirs.cs" />
+    <Compile Include="Models\GameMapCoordinates.cs" />
     <Compile Include="Models\GameObjectQuantity.cs" />
     <Compile Include="Models\GameObjects.cs" />
     <Compile Include="Models\Location.cs" />
@@ -123,13 +124,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\human.jpg" />
+    <Resource Include="Assets\human.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\mandolorian.jpg" />
+    <Resource Include="Assets\mandolorian.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\wookie.jpg" />
+    <Resource Include="Assets\wookie.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

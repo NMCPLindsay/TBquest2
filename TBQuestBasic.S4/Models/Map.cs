@@ -12,11 +12,14 @@ namespace TBQuestBasic.Models
     public class Map : ObservableObject
     {
         #region FIELDS    
-        private List<Location> _locations;
-        private Location _currentLocation;
+        private Location[,,] _locations;
+        
         private ObservableCollection<Location> _accessibleLocations;
         private Location _initialLocation;
         private List<GameObjects> _standardGameObjects;
+        private GameMapCoordinates _currentLocationCoordinates;
+        private int _maxPlanetId, _maxPLocationId, _maxBuildingId;
+
 
 
 
@@ -25,6 +28,17 @@ namespace TBQuestBasic.Models
         #endregion
 
         #region PROPERTIES
+        public Location CurrentLocation
+        {
+            get { return _locations[_currentLocationCoordinates.PlanetId,_currentLocationCoordinates.LocationId, _currentLocationCoordinates.BuildingId]; }
+        }
+
+        public GameMapCoordinates CurrentLocationCoordinates
+        {
+            get { return _currentLocationCoordinates; }
+            set { _currentLocationCoordinates = value; }
+        }
+
         public List<GameObjects> StandardGameObjects
         {
             get { return _standardGameObjects; }
@@ -43,8 +57,6 @@ namespace TBQuestBasic.Models
         {
             get
             {
-                
-                
                 return _accessibleLocations;
             }
             set
@@ -54,18 +66,9 @@ namespace TBQuestBasic.Models
             }
         }
 
-        public Location CurrentLocation
-        {
-            get { return _currentLocation; }
-            set
-            {
-                _currentLocation = value;
-                OnPropertyChanged(nameof(CurrentLocation));
-            }
-        }
+   
 
-
-        public List<Location> Locations
+        public Location[,,] Locations
         {
             get { return _locations; }
             set { _locations = value; }
@@ -76,9 +79,13 @@ namespace TBQuestBasic.Models
 
         #region CONSTRUCTORS
 
-        public Map()
+        public Map(int maxPlanetId, int maxPLocationId, int maxBuildingId)
         {
-        
+
+            _maxPlanetId = maxPlanetId;
+            _maxPLocationId = maxPLocationId;
+            _maxBuildingId = maxBuildingId;
+
         }
         
      

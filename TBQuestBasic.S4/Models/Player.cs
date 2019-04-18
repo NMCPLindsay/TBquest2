@@ -22,7 +22,7 @@ namespace TBQuestBasic.Models
         private int _level;
         private double _hitPoints;
         private double _exp;
-        private string _imgFileName;
+        private Uri _imgFileName;
         private ObservableCollection<GameObjectQuantity> _inventory;
         private ObservableCollection<GameObjectQuantity> _weapons;
         private ObservableCollection<GameObjectQuantity> _armor;
@@ -68,7 +68,7 @@ namespace TBQuestBasic.Models
 
 
 
-        public string ImgFileName
+        public Uri ImgFileName
         {
             get { return _imgFileName; }
             set { _imgFileName = value; }
@@ -145,25 +145,7 @@ namespace TBQuestBasic.Models
 
             return Bio;
         }
-        public string GetImageFileName(Player player)
-        {
-
-            string fileName = null;
-            if (player.Race == Character.Races.Mandalorian)
-            {
-                fileName = @"C:\Users\phili\Desktop\Application Dev\TBQuestBasic\TBQuestBassic\TBQuestBassic\Assets\mandolorain.jpg";
-            }
-            else if (player.Race == Character.Races.Human)
-            {
-                fileName = @"C:\Users\phili\Desktop\Application Dev\TBQuestBasic\TBQuestBassic\TBQuestBassic\Assets\human.jpg";
-            }
-            else if (player.Race == Character.Races.Wookie)
-            {
-                fileName = @"C:\Users\phili\Desktop\Application Dev\TBQuestBasic\TBQuestBassic\TBQuestBassic\Assets\wookie.jpg";
-            }
-
-            return fileName;
-        }
+        
 
         public override string GetPlayerGreeting(Player player)
         {
