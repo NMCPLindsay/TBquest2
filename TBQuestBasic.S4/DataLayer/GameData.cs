@@ -183,7 +183,7 @@ namespace TBQuestBasic.DataLayer
 
 
 
-        public static ObservableCollection<Location> ShipRangeToDistance(Location currentLocation, Ship ship)
+        public static ObservableCollection<Location> ShipRangeToDistance(Location currentLocation, PlayerShip ship)
         {
 
 
@@ -203,7 +203,7 @@ namespace TBQuestBasic.DataLayer
                new Weapons(1001, "Blaster", 5, Weapons.Types.OneHanded, "A single handed basic laser blaster."),
                new Armor(2001, "Mandalore Armor", 10, Armor.Types.Chest, "Traditional chest armor of Mandalorians"),
                new Elixirs(3001, "Bacta Vile", "Recovers 20 hit points", 20),
-               new Ship(4001, "YT7000 Correlian", 2, "A freighter ship known for high speeds", Ship.ShipClasses.Freighter),
+               new PlayerShip(4001, "YT7000 Correlian", 2, "A freighter ship known for high speeds", PlayerShip.ShipClasses.Freighter),
                new Weapons (1002, "Thermal Detonator", 50, Weapons.Types.Throwable, "Small grenade that packs a punch.")
            };
 

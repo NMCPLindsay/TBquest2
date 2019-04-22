@@ -121,7 +121,7 @@
                                 <DataGridTextColumn 
                                                     Header="Description" 
                                                     IsReadOnly="True"                 
-                                                    Binding="{Binding GameObjects.Information, Mode=OneWay}"
+                                                    Binding="{Binding GameObject.Information, Mode=OneWay}"
                                                     Width="*">
                                     <DataGridTextColumn.ElementStyle>
                                         <Style>

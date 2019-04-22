@@ -10,14 +10,17 @@ namespace TBQuestBasic.Models
 {
     public partial class Player : Character
     {
+
+        #region ENUMS
         public enum Alignments
         {
             Good,
             Neutral,
             Evil
         }
+        #endregion
 
-    
+        #region FIELDS
         private Alignments _align;
         private int _level;
         private double _hitPoints;
@@ -28,6 +31,9 @@ namespace TBQuestBasic.Models
         private ObservableCollection<GameObjectQuantity> _armor;
         private ObservableCollection<GameObjectQuantity> _elixirs;
         private ObservableCollection<GameObjectQuantity> _ships;
+        #endregion
+
+        #region PROPERTIES
 
         public ObservableCollection<GameObjectQuantity> Ships
         {
@@ -74,7 +80,7 @@ namespace TBQuestBasic.Models
             set { _imgFileName = value; }
         }
 
-        
+
 
         public double EXP
         {
@@ -102,15 +108,9 @@ namespace TBQuestBasic.Models
             get { return _align; }
             set { _align = value; }
         }
+        #endregion
 
-
-     
-
-        
-
-
-
-
+        #region CONSTRUCTORS
         public Player()
         {
             _armor = new ObservableCollection<GameObjectQuantity>();
@@ -118,17 +118,17 @@ namespace TBQuestBasic.Models
             _inventory = new ObservableCollection<GameObjectQuantity>();
             _ships = new ObservableCollection<GameObjectQuantity>();
             _weapons = new ObservableCollection<GameObjectQuantity>();
-        
-
         }
-     
+        #endregion
+
+        #region METHODS
         public override string GetPlayerBio()
         {
             string Bio = null;
-            
+
             if (Race == Races.Mandalorian)
             {
-                 Bio = "The mandalorians were a proud race of bounty hunters. The most famous of which are the late Jango Fett and his son, Boba Fett.";
+                Bio = "The mandalorians were a proud race of bounty hunters. The most famous of which are the late Jango Fett and his son, Boba Fett.";
             }
             else if (Race == Races.Human)
             {
@@ -145,7 +145,7 @@ namespace TBQuestBasic.Models
 
             return Bio;
         }
-        
+
 
         public override string GetPlayerGreeting(Player player)
         {
@@ -178,7 +178,7 @@ namespace TBQuestBasic.Models
             {
                 if (gameItemQuantity.GameObject is Weapons) Weapons.Add(gameItemQuantity);
                 if (gameItemQuantity.GameObject is Armor) Armor.Add(gameItemQuantity);
-                if (gameItemQuantity.GameObject is Ship) Ships.Add(gameItemQuantity);
+                if (gameItemQuantity.GameObject is PlayerShip) Ships.Add(gameItemQuantity);
                 if (gameItemQuantity.GameObject is Elixirs) Elixirs.Add(gameItemQuantity);
             }
         }
@@ -220,8 +220,9 @@ namespace TBQuestBasic.Models
                 }
             }
             UpdateInventoryCategories();
-            
+
         }
+        #endregion
 
     }
 }

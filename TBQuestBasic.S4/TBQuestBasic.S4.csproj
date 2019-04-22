@@ -79,17 +79,20 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Armor.cs" />
-    <Compile Include="Models\Character.cs" />
-    <Compile Include="Models\Elixirs.cs" />
-    <Compile Include="Models\GameMapCoordinates.cs" />
-    <Compile Include="Models\GameObjectQuantity.cs" />
-    <Compile Include="Models\GameObjects.cs" />
-    <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\GameObjects\Armor.cs" />
+    <Compile Include="Models\Character\Character.cs" />
+    <Compile Include="Models\GameObjects\Elixirs.cs" />
+    <Compile Include="Models\Interface\IBattle.cs" />
+    <Compile Include="Models\Interface\IPilot.cs" />
+    <Compile Include="Models\Interface\ITrade.cs" />
+    <Compile Include="Models\Locations\GameMapCoordinates.cs" />
+    <Compile Include="Models\GameObjects\GameObjectQuantity.cs" />
+    <Compile Include="Models\GameObjects\GameObjects.cs" />
+    <Compile Include="Models\Locations\Location.cs" />
     <Compile Include="Models\Map.cs" />
-    <Compile Include="Models\Player.cs" />
-    <Compile Include="Models\Ship.cs" />
-    <Compile Include="Models\Weapons.cs" />
+    <Compile Include="Models\Character\Player.cs" />
+    <Compile Include="Models\GameObjects\PlayerShip.cs" />
+    <Compile Include="Models\GameObjects\Weapons.cs" />
     <Compile Include="ObservableObject.cs" />
     <Compile Include="PresentationLayer\GameSessionView.xaml.cs">
       <DependentUpon>GameSessionView.xaml</DependentUpon>
@@ -137,6 +140,9 @@
     <Resource Include="Assets\wookie.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\NPC\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
