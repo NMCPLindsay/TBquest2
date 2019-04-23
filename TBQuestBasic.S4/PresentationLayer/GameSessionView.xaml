@@ -154,7 +154,36 @@
 
                 
                 <Grid Grid.Row="1" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
 
+                    <StackPanel Grid.Column="0">
+                        <Label Style="{StaticResource HeaderStyle}" Content="NPC Controls"/>
+                        <Button Name="TalkButton" Style="{StaticResource ButtonStyle}" Content="Talk"/>
+                        <Button Name="TradeButton" Style="{StaticResource ButtonStyle}" Content="Trade"/>
+                        <Button Name="BattleButton" Style="{StaticResource ButtonStyle}" Content="Battle"/>
+                        
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1">
+                        <Label Style="{StaticResource HeaderStyle}" Content="Item Controls"/>
+                        <Button Name="PickUpItemButton" Style="{StaticResource ButtonStyle}" Content="Pick up"/>
+                        <Button Name="EquipItemButton" Style="{StaticResource ButtonStyle}" Content="Equip"/>
+                        <Button Name="Useitem" Style="{StaticResource ButtonStyle}" Content="Use"/>
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2">
+                        <Label Style="{StaticResource HeaderStyle}" Content="Ship Controls"/>
+                        <Button Name="GetinShipButton" Style="{StaticResource ButtonStyle}" Content="Get in"/>
+                        <Button Name="GetOutShipButton" Style="{StaticResource ButtonStyle}" Content="Get out"/>
+                        <Button Name="TakeOffButton" Style="{StaticResource ButtonStyle}" Content="Take off"/>
+
+                    </StackPanel>
+                    
                 </Grid>
 
                 <Grid Grid.Row="2">
@@ -171,7 +200,7 @@
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
-                <Border Style="{StaticResource BorderStyle}" Grid.RowSpan="3" Margin="2"/>
+                <Border Style="{StaticResource BorderStyle}" Grid.RowSpan="3" Margin="0,0,4,4"/>
                 <StackPanel Grid.Row="0">
                     
                     <Label Style="{StaticResource HeaderStyle}"
