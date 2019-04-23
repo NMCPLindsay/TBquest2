@@ -16,7 +16,7 @@ namespace TBQuestBasic.PresentationLayer
         private Map _gameMap;
         private Location _currentLocation;
         private ObservableCollection<Location> _accessibleLocations;
-        private Ship _playerShip;
+        private PlayerShip _playerShip;
         private Location _initialLocation;
 
         public Location InitialLocation
@@ -26,7 +26,7 @@ namespace TBQuestBasic.PresentationLayer
         }
 
 
-        public Ship PlayerShip
+        public PlayerShip PlayerShip
         {
             get { return _playerShip; }
             set { _playerShip = value; }
