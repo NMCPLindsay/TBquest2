@@ -93,19 +93,7 @@ namespace TBQuestBasic.Models
         #endregion
 
         #region METHODS
-        public ObservableCollection<Location> AvailiblePlanetLocations()
-        {
-            ObservableCollection<Location> availablePlanetLocations = new ObservableCollection<Location>();
-
-            if (_currentLocationCoordinates.LocationId == 0 && _currentLocationCoordinates.BuildingId == 0 )
-            {
-                
-            }
-
-
-
-
-        }
+        
     
 
         

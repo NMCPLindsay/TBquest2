@@ -13,7 +13,7 @@ namespace TBQuestBasic.Models
         private int _id;
         private string _name;
         private string _description;
-        private bool _isAccessible;
+        
         private ObservableCollection<GameObjectQuantity> _gameObjects;
         private bool _canHaveShip;
 
@@ -48,15 +48,7 @@ namespace TBQuestBasic.Models
         }
 
 
-        public bool IsAccessible
-        {
-            get { return _isAccessible; }
-            set
-            {
-                _isAccessible = value;
-
-            }
-        }
+       
 
 
         public string Description
