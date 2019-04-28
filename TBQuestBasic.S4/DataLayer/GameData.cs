@@ -32,9 +32,7 @@ namespace TBQuestBasic.DataLayer
 
 
         }
-
-
-
+               
         public static List<string> InitialMessages(Player player)
         {
             return new List<string>
@@ -47,11 +45,7 @@ namespace TBQuestBasic.DataLayer
 
 
         }
-
-
-
-
-
+                          
         public static Map GameMapData()
         {
             Map gameMap = new Map(5, 5, 3);
@@ -83,7 +77,9 @@ namespace TBQuestBasic.DataLayer
                 Id = 4,
                 Name = "Spaceport Terminal",
                 Description = "This is the place where you can board your ship and enter orbit to make light speed calculations to move to another planet. You must have the 'Ship Key' for the ship you wish to pilot.",
-                CanHaveShip = true
+                CanHaveShip = true,
+                GameObjects = 
+                
 
             };
             gameMap.Locations[0, 2, 0] = new Location()
@@ -180,21 +176,8 @@ namespace TBQuestBasic.DataLayer
 
             return gameMap;
         }
-
-
-
-        public static ObservableCollection<Location> ShipRangeToDistance(Location currentLocation, PlayerShip ship)
-        {
-
-
-
-            ObservableCollection<Location> accessibleLocations = new ObservableCollection<Location>();
-
-            
-
                
-            return accessibleLocations;
-        }
+       
 
         public static List<GameObjects> StandardGameObjects()
         {
@@ -214,11 +197,6 @@ namespace TBQuestBasic.DataLayer
         {
             return StandardGameObjects().FirstOrDefault(i => i.Id == id);
         }
-
-
-
-
-
-
+                              
     }
 }
