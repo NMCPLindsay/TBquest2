@@ -26,16 +26,16 @@
         </Style>
         <Style x:Key="SubHeaderStyle" TargetType="Label">
             <Setter Property="Foreground" Value="GhostWhite"/>
-            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontSize" Value="18"/>
         </Style>
         <Style x:Key="DetailLabelStyle" TargetType="Label">
             <Setter Property="Foreground" Value="GhostWhite"/>
-            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontSize" Value="16"/>
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
         <Style x:Key="VariableLabelStyle" TargetType="Label">
             <Setter Property="Foreground" Value="GhostWhite"/>
-            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontSize" Value="14"/>
             <Setter Property="FontWeight" Value="ExtraBold"/>
         </Style>
         <Style x:Key="RadioButtonStyle" TargetType="RadioButton">
@@ -107,7 +107,7 @@
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
 
-                <Border Style="{StaticResource BorderStyle}" Grid.RowSpan="3" Margin="0" />
+                <Border Style="{StaticResource BorderStyle}" Grid.RowSpan="3" Margin="0,0,0.4,-0.4" />
                 <Grid Grid.Row="0">
                     <StackPanel Grid.Row="0">
                         <Label Style="{StaticResource HeaderStyle}"
@@ -121,14 +121,43 @@
                                             x:Name="LocationItemsDataGrid"
                                             Height="150"
                                             ItemsSource="{Binding CurrentLocation.GameObjects}" 
-                                            SelectedItem="{Binding CurrentGameItem}"
+                                            SelectedItem="{Binding CurrentGameObject}"
                                             AutoGenerateColumns="False"
                                             HeadersVisibility="Column">
                                     <DataGrid.Columns>
                                         <DataGridTextColumn 
                                                     Header="Description" 
                                                     IsReadOnly="True"                 
-                                                    Binding="{Binding GameObjects.Information, Mode=OneWay}"
+                                                    Binding="{Binding GameObject.Information, Mode=OneWay}"
+                                                    Width="*">
+                                            <DataGridTextColumn.ElementStyle>
+                                                <Style>
+                                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                                </Style>
+                                            </DataGridTextColumn.ElementStyle>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn 
+                                                    Header="Qty"
+                                                    IsReadOnly="True"
+                                                    Width="Auto"
+                                                    Binding="{Binding Quantity, Mode=OneWay}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </TabItem>
+                            <TabItem Header="NPCs"
+                                        x:Name="NPCInfoTabItem">
+                                <DataGrid 
+                                            x:Name="NPCDataGrid"
+                                            Height="150"
+                                            ItemsSource="{Binding CurrentLocation.NPCs}" 
+                                            SelectedItem="{Binding CurrentNPC}"
+                                            AutoGenerateColumns="False"
+                                            HeadersVisibility="Column">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn 
+                                                    Header="Description" 
+                                                    IsReadOnly="True"                 
+                                                    Binding="{Binding NPC.Information, Mode=OneWay}"
                                                     Width="*">
                                             <DataGridTextColumn.ElementStyle>
                                                 <Style>
@@ -194,53 +223,58 @@
 
 
             <Grid Grid.Column="1">
-                
+
                 <Grid.RowDefinitions>
                     <RowDefinition Height="2*"/>
-                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1.5*"/>
                     <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
                 <Border Style="{StaticResource BorderStyle}" Grid.RowSpan="3" Margin="0,0,4,4"/>
                 <StackPanel Grid.Row="0">
-                    
+
                     <Label Style="{StaticResource HeaderStyle}"
-                        Content="Navigation and Messages"/>
+                        Content="Navigation Interface"/>
                     <Label Style="{StaticResource DetailLabelStyle}" HorizontalAlignment="Center" Content="Location: "/>
                     <TextBox Name="CurrentLocationNameTextBox" Style="{StaticResource DetailTextBoxStyle}" HorizontalAlignment="Center" Text="{Binding CurrentLocation.Name}" Width="350" TextAlignment="Center"/>
                     <Label Style="{StaticResource DetailLabelStyle}" HorizontalAlignment="Center" Content="Location Description: "/>
                     <TextBox Name="CurrentLocationDescriptionTextBox" Style="{StaticResource DetailTextBoxStyle}" HorizontalAlignment="Center" Text="{Binding CurrentLocation.Description}" TextWrapping="Wrap" Width="700" TextAlignment="Left" VerticalContentAlignment="Top" Height="200"/>
-                    <Label Style="{StaticResource DetailLabelStyle}" HorizontalAlignment="Center" Content="Navigation Controls"/>
+
                 </StackPanel>
-                <Grid Grid.Row="1" Margin="0,0,2,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="2*"/>
-                    </Grid.ColumnDefinitions>
+                <StackPanel Grid.Row="1" Margin="0,0,2,0">
+                    <Label Content="Navigation Controls" Style="{StaticResource SubHeaderStyle}" HorizontalAlignment="Center"/>
+                    <Grid Grid.Row="1" Margin="0,0,2,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
 
-                    <StackPanel Grid.Column="0" Orientation="Vertical">
-                        <ListBox Name="PlanetListBox" Background="AliceBlue" Foreground="White"/>
-                    </StackPanel>
-                    <StackPanel Grid.Column="1" Orientation="Vertical">
-                        <Button Name="PLocationMinus1" Style="{StaticResource ButtonStyle}"/>
-                        <Button Name="PLocationPlus1" Style="{StaticResource ButtonStyle}"/>
-                    </StackPanel>
-                    <StackPanel Grid.Column="2" Orientation="Vertical">
-                        <Button Name="BuildingPlus1Button" Style="{StaticResource ButtonStyle}"/>
-                        <Button Name="BuildingPlus2Button" Style="{StaticResource ButtonStyle}"/>
-                        <Button Name="BuildingPlus3Button" Style="{StaticResource ButtonStyle}"/>
-                        <Button Name="BuildingPlus4Button" Style="{StaticResource ButtonStyle}"/>
-                    </StackPanel>
-                    <Grid Grid.Column="3">
-                        <Button Name="ExitBuildingButton" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource ButtonStyle}" Content="Return"/>
+                        <StackPanel Grid.Column="0" Orientation="Vertical">
+                            <Button Name="PlanetMinus1Button" Style="{StaticResource ButtonStyle}"/>
+                            <Button Name="PlanetPlus1Button" Style="{StaticResource ButtonStyle}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Orientation="Vertical">
+                            <Button Name="PLocationMinus1" Style="{StaticResource ButtonStyle}"/>
+                            <Button Name="PLocationPlus1" Style="{StaticResource ButtonStyle}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2" Orientation="Vertical">
+                            <Button Name="BuildingPlus1Button" Style="{StaticResource ButtonStyle}"/>
+                            <Button Name="BuildingPlus2Button" Style="{StaticResource ButtonStyle}"/>
+                            <Button Name="BuildingPlus3Button" Style="{StaticResource ButtonStyle}"/>
+                            <Button Name="BuildingPlus4Button" Style="{StaticResource ButtonStyle}"/>
+                        </StackPanel>
+                        <Grid Grid.Column="3">
+                            <Button Name="ExitBuildingButton" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource ButtonStyle}" Content="Return"/>
 
+                        </Grid>
+                    </Grid>
+                </StackPanel>
+                <Grid Grid.Row="2">
+                        <Image Name="LocationImage"/>
                     </Grid>
                 </Grid>
-                <Grid>
-                    <Image Name="LocationImage"/>
-                </Grid>
-            </Grid>
+            
 
             <Grid Grid.Column="2">
                 <Border Style="{StaticResource BorderStyle}"/>

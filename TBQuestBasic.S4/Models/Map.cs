@@ -7,15 +7,14 @@ using System.Collections.ObjectModel;
 using TBQuestBasic.DataLayer;
 using TBQuestBasic.PresentationLayer;
 
-namespace TBQuestBasic.Models 
+namespace TBQuestBasic.Models
 {
     public class Map : ObservableObject
     {
         #region FIELDS    
         private Location[,,] _locations;
-        
+
         private ObservableCollection<Location> _accessibleLocations;
-        private Location _initialLocation;
         private List<GameObjects> _standardGameObjects;
         private GameMapCoordinates _currentLocationCoordinates;
         private int _maxPlanetId, _maxPLocationId, _maxBuildingId;
@@ -30,7 +29,7 @@ namespace TBQuestBasic.Models
         #region PROPERTIES
         public Location CurrentLocation
         {
-            get { return _locations[_currentLocationCoordinates.PlanetId,_currentLocationCoordinates.LocationId, _currentLocationCoordinates.BuildingId]; }
+            get { return _locations[_currentLocationCoordinates.PlanetId, _currentLocationCoordinates.LocationId, _currentLocationCoordinates.BuildingId]; }
         }
 
         public GameMapCoordinates CurrentLocationCoordinates
@@ -46,11 +45,7 @@ namespace TBQuestBasic.Models
         }
 
 
-        public Location InitialLocation
-        {
-            get { return _initialLocation; }
-            set { _initialLocation = value; }
-        }
+   
 
 
         public ObservableCollection<Location> AccessibleLocations
@@ -66,7 +61,7 @@ namespace TBQuestBasic.Models
             }
         }
 
-   
+
 
         public Location[,,] Locations
         {
@@ -74,7 +69,7 @@ namespace TBQuestBasic.Models
             set { _locations = value; }
         }
 
-        
+
         #endregion
 
         #region CONSTRUCTORS
@@ -87,30 +82,70 @@ namespace TBQuestBasic.Models
             _maxBuildingId = maxBuildingId;
 
         }
-        
-     
+
+
 
         #endregion
 
         #region METHODS
-        public ObservableCollection<Location> AvailiblePlanetLocations()
+
+        public Location GetNextPlanetLocation()
         {
-            ObservableCollection<Location> availablePlanetLocations = new ObservableCollection<Location>();
 
-            if (_currentLocationCoordinates.LocationId == 0 && _currentLocationCoordinates.BuildingId == 0 )
+            Location nextPlanet = null;
+
+            //
+            // Checks that location is an orbit location and that there is a location after.
+            //
+            if (_currentLocationCoordinates.LocationId == 0 && _currentLocationCoordinates.BuildingId == 0 && _currentLocationCoordinates.PlanetId > 0)
             {
-                
+                Location nextPlanetLocation = _locations[_currentLocationCoordinates.PlanetId + 1, _currentLocationCoordinates.LocationId, _currentLocationCoordinates.BuildingId];
+
+                //
+                // location exists and player can access location
+                //
+                if (nextPlanet != null)
+                {
+                    nextPlanet = nextPlanetLocation;
+                }
             }
-
-
-
+            else
+            {
+                nextPlanet = null;
+            }
+            return nextPlanet;
 
         }
-    
 
-        
+        public Location GetPreviousPlanetLocation()
+        {
 
-        
+            Location previousPlanet = null;
+
+            //
+            // Check current location is orbit and sees if there is a location before.
+            //
+            if (_currentLocationCoordinates.LocationId == 0 && _currentLocationCoordinates.BuildingId == 0 && _currentLocationCoordinates.PlanetId > 0)
+            {
+                Location previousPlanetLocation = _locations[_currentLocationCoordinates.PlanetId - 1, _currentLocationCoordinates.LocationId, _currentLocationCoordinates.BuildingId];
+
+                //
+                // location exists and player can access location
+                //
+                if (previousPlanetLocation != null)
+                {
+                    previousPlanet = previousPlanetLocation;
+                }
+            }
+            else
+            {
+                previousPlanet = null;
+            }
+            return previousPlanet;
+
+        }
+
+
 
 
         #endregion
