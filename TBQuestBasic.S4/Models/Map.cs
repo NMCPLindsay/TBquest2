@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using TBQuestBasic.DataLayer;
 using TBQuestBasic.PresentationLayer;
+using TBQuestBasic.Models.GameObjects;
 
 namespace TBQuestBasic.Models
 {
@@ -15,7 +16,7 @@ namespace TBQuestBasic.Models
         private Location[,,] _locations;
 
         private ObservableCollection<Location> _accessibleLocations;
-        private List<GameObjects> _standardGameObjects;
+        private List<GameObject> _standardGameObjects;
         private GameMapCoordinates _currentLocationCoordinates;
         private int _maxPlanetId, _maxPLocationId, _maxBuildingId;
 
@@ -38,7 +39,7 @@ namespace TBQuestBasic.Models
             set { _currentLocationCoordinates = value; }
         }
 
-        public List<GameObjects> StandardGameObjects
+        public List<GameObject> StandardGameObjects
         {
             get { return _standardGameObjects; }
             set { _standardGameObjects = value; }
@@ -88,19 +89,7 @@ namespace TBQuestBasic.Models
         #endregion
 
         #region METHODS
-        public ObservableCollection<Location> AvailiblePlanetLocations()
-        {
-            ObservableCollection<Location> availablePlanetLocations = new ObservableCollection<Location>();
 
-            if (_currentLocationCoordinates.LocationId == 0 && _currentLocationCoordinates.BuildingId == 0 )
-            {
-                
-            }
-
-
-
-
-        }
     
 
         

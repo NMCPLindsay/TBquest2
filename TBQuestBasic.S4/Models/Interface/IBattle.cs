@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TBQuestBasic.Models.Interface
 {
-    class IBattle
+    interface IBattle
     {
     }
 }

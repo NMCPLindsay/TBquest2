@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using TBQuestBasic.DataLayer;
 
-namespace TBQuestBasic.Models
+namespace TBQuestBasic.Models.GameObjects
 {
-    public class GameObjects
+    public class GameObject
     {
         private int _id;
         private string _name;
@@ -66,13 +66,13 @@ namespace TBQuestBasic.Models
      
 
 
-        public GameObjects(int id, string name, string description, string useMessage="")
+        public GameObject(int id, string name, string description)
         {
             Id = id;
             Name = name;
             Description = description;
             
-            UseMessage = useMessage;
+           
         }
 
 

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using TBQuestBasic.Models;
 using TBQuestBasic.DataLayer;
 using System.Collections.ObjectModel;
+using TBQuestBasic.Models.GameObjects;
+using TBQuestBasic.Models.Interface;
+using TBQuestBasic.Models.NPC;
 
 namespace TBQuestBasic.PresentationLayer
 {
@@ -16,7 +19,7 @@ namespace TBQuestBasic.PresentationLayer
         private Map _gameMap;
         private Location _currentLocation;
         private ObservableCollection<Location> _accessibleLocations;
-        private PlayerShip _playerShip;
+        
         private Location _initialLocation;
 
         public Location InitialLocation
@@ -26,11 +29,7 @@ namespace TBQuestBasic.PresentationLayer
         }
 
 
-        public PlayerShip PlayerShip
-        {
-            get { return _playerShip; }
-            set { _playerShip = value; }
-        }
+ 
 
 
 

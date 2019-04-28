@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using TBQuestBasic.Models.GameObjects;
+using TBQuestBasic.Models.NPC;
+using TBQuestBasic.Models.Interface;
 
 namespace TBQuestBasic.Models 
 {
@@ -13,20 +16,10 @@ namespace TBQuestBasic.Models
         private int _id;
         private string _name;
         private string _description;
-        
         private ObservableCollection<GameObjectQuantity> _gameObjects;
         private bool _canHaveShip;
-
-
-
-
-
-
-
-
-
-
-
+        private ObservableCollection<NPC.NPC> _npcs;
+        private Uri _locationImage;
 
 
 
@@ -34,6 +27,19 @@ namespace TBQuestBasic.Models
         #endregion
 
         #region PROPERTIES
+
+        public Uri LocationImage
+        {
+            get { return _locationImage; }
+            set { _locationImage = value; }
+        }
+
+        public ObservableCollection<NPC.NPC> NPCs
+        {
+            get { return _npcs; }
+            set { _npcs = value; }
+        }   
+
         public bool CanHaveShip
         {
             get { return _canHaveShip; }
@@ -46,10 +52,7 @@ namespace TBQuestBasic.Models
             get { return _gameObjects; }
             set { _gameObjects = value; }
         }
-
-
-       
-
+               
 
         public string Description
         {
@@ -70,6 +73,7 @@ namespace TBQuestBasic.Models
             get { return _id; }
             set { _id = value; }
         }
+
         #endregion
 
         #region CONSTRUCTORS

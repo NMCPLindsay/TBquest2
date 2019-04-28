@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TBQuestBasic.Models;
+using TBQuestBasic.Models.GameObjects;
+using TBQuestBasic.Models.NPC;
+
 using System.Collections.ObjectModel;
+using TBQuestBasic.Models;
 
 namespace TBQuestBasic.DataLayer
 {
@@ -19,7 +22,7 @@ namespace TBQuestBasic.DataLayer
                 Id = 1,
                 Name = "Jugo Sabine",
                 LocationId = 0,
-                Race = Character.Races.Mandalorian,
+                Race = Player.Races.Mandalorian,
                 Align = Player.Alignments.Evil,
                 Level = 1,
                 HitPoints = 100,
@@ -48,7 +51,7 @@ namespace TBQuestBasic.DataLayer
                           
         public static Map GameMapData()
         {
-            Map gameMap = new Map(5, 5, 3);
+            Map gameMap = new Map(2, 3, 3);
             //
             //coruscant locations
             //
@@ -78,7 +81,10 @@ namespace TBQuestBasic.DataLayer
                 Name = "Spaceport Terminal",
                 Description = "This is the place where you can board your ship and enter orbit to make light speed calculations to move to another planet. You must have the 'Ship Key' for the ship you wish to pilot.",
                 CanHaveShip = true,
-                GameObjects = 
+                GameObjects = new ObservableCollection<GameObjectQuantity>()
+                {
+                    new GameObjectQuantity(GetGameObjectById(1001),1)
+                }
                 
 
             };
@@ -179,21 +185,25 @@ namespace TBQuestBasic.DataLayer
                
        
 
-        public static List<GameObjects> StandardGameObjects()
+        public static List<GameObject> StandardGameObjects()
         {
-            return new List<GameObjects>()
+            return new List<GameObject>()
            {
-               new Weapons(1001, "Blaster", 5, Weapons.Types.OneHanded, "A single handed basic laser blaster."),
-               new Armor(2001, "Mandalore Armor", 10, Armor.Types.Chest, "Traditional chest armor of Mandalorians"),
-               new Elixirs(3001, "Bacta Vile", "Recovers 20 hit points", 20),
-               new PlayerShip(4001, "YT7000 Correlian", 2, "A freighter ship known for high speeds", PlayerShip.ShipClasses.Freighter),
-               new Weapons (1002, "Thermal Detonator", 50, Weapons.Types.Throwable, "Small grenade that packs a punch.")
+               new Weapons(1001, "Blaster", 20, Weapons.Types.OneHanded, "A standard blaster pistol."),
+               new Armor(2001, "Mandalorian Chest", 10, Armor.Types.Chest, "Standard Mandalorian chestpiece."),
+               new Armor(2002, "Mandalorian Helmet", 5, Armor.Types.Headgear, "Standard Mandalorian Helmet."),
+               new Armor(2003, "Mandalorian Boots", 5, Armor.Types.Feet, "Standard Mandalorian Boots."),
+               new Armor(2004, "Mandalorian Bracers", 5, Armor.Types.Hands, "Standard Mandalorian Bracers."),
+               new Armor(2005, "Mandalorian Greaves", 7, Armor.Types.Legs, "Standard Mandalorian Greaves."),
+               new Elixirs(3001, "Bacta Vile", "Generic Health Restoration.", 20),
+               new ShipKeys(4001, "Freighter Key", "Ship key to start a ship.")
+
            };
 
 
         }
 
-        private static GameObjects GetGameObjectById(int id)
+        private static GameObject GetGameObjectById(int id)
         {
             return StandardGameObjects().FirstOrDefault(i => i.Id == id);
         }

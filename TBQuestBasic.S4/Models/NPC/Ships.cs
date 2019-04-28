@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-namespace TBQuestBasic.Models.Interface
+using TBQuestBasic.Models.Interface;
+namespace TBQuestBasic.Models.NPC
 {
-    interface ITrade
+    public class Ships : NPC, IBattle, IPilot
     {
     }
 }

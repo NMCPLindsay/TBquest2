@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TBQuestBasic.Models
+namespace TBQuestBasic.Models.GameObjects
 {
-    public class Elixirs:GameObjects
+    public class Elixirs:GameObject
     {
 
         private int _healthChange;

@@ -6,37 +6,21 @@ using System.Threading.Tasks;
 
 namespace TBQuestBasic.Models
 {
-    public abstract class Character 
+    public class Character 
     {
-        public enum Races
-        {
-            Mandalorian,
-            Human,
-            Wookie
-        }
+       
 
 
         private int _id;
         private string _name;
         private int _locationId;
-        private Races _race;
-        private string _bio;
-
-        public string Bio
-        {
-            get { return GetPlayerBio(); }
-            set { _bio = value; }
-        }
+        
 
 
 
 
 
-        public Races Race
-        {
-            get { return _race; }
-            set { _race = value; }
-        }
+       
 
 
         public int LocationId
@@ -59,12 +43,9 @@ namespace TBQuestBasic.Models
             set { _id = value; }
         }
 
-        public abstract string GetPlayerBio();
+        
 
-        public virtual string GetPlayerGreeting(Player player)
-        {
-            return "Hello! How can I assist you?";
-        }
+   
 
 
 

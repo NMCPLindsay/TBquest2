@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using TBQuestBasic.DataLayer;
 using System.Collections.ObjectModel;
+using TBQuestBasic.Models.GameObjects;
+
 
 namespace TBQuestBasic.Models
 {
@@ -18,6 +20,13 @@ namespace TBQuestBasic.Models
             Neutral,
             Evil
         }
+
+        public enum Races
+        {
+            Mandalorian,
+            Wookie,
+            Human
+        }
         #endregion
 
         #region FIELDS
@@ -30,15 +39,78 @@ namespace TBQuestBasic.Models
         private ObservableCollection<GameObjectQuantity> _weapons;
         private ObservableCollection<GameObjectQuantity> _armor;
         private ObservableCollection<GameObjectQuantity> _elixirs;
-        private ObservableCollection<GameObjectQuantity> _ships;
+        private ObservableCollection<GameObjectQuantity> _shipKeys;
+        private Races _race;
+        private string _bio;
+        private int _str;
+        private int _dex;
+        private int _int;
+        private int _cha;
+        private int _wis;
+        private int _con;
+
         #endregion
 
         #region PROPERTIES
 
-        public ObservableCollection<GameObjectQuantity> Ships
+        public int Constitution
         {
-            get { return _ships; }
-            set { _ships = value; }
+            get { return _con; }
+            set { _con = value; }
+        }
+
+
+        public int Wisdom
+        {
+            get { return _wis; }
+            set { _wis = value; }
+        }
+
+
+        public int Charisma
+        {
+            get { return _cha; }
+            set { _cha = value; }
+        }
+
+
+        public int Intelligence
+        {
+            get { return _int; }
+            set { _int = value; }
+        }
+
+
+        public int Dexterity
+        {
+            get { return _dex; }
+            set { _dex = value; }
+        }
+
+
+        public int Strength
+        {
+            get { return _str; }
+            set { _str = value; }
+        }
+
+        public string Bio
+        {
+            get { return _bio; }
+            set { _bio = value; }
+        }
+
+        public Races Race
+        {
+            get { return _race; }
+            set { _race = value; }
+        }
+
+
+        public ObservableCollection<GameObjectQuantity> ShipKeys
+        {
+            get { return _shipKeys; }
+            set { _shipKeys = value; }
         }
 
 
@@ -47,7 +119,6 @@ namespace TBQuestBasic.Models
             get { return _elixirs; }
             set { _elixirs = value; }
         }
-
 
 
         public ObservableCollection<GameObjectQuantity> Armor
@@ -69,17 +140,12 @@ namespace TBQuestBasic.Models
             get { return _inventory; }
             set { _inventory = value; }
         }
-
-
-
-
-
+                          
         public Uri ImgFileName
         {
             get { return _imgFileName; }
             set { _imgFileName = value; }
         }
-
 
 
         public double EXP
@@ -116,61 +182,18 @@ namespace TBQuestBasic.Models
             _armor = new ObservableCollection<GameObjectQuantity>();
             _elixirs = new ObservableCollection<GameObjectQuantity>();
             _inventory = new ObservableCollection<GameObjectQuantity>();
-            _ships = new ObservableCollection<GameObjectQuantity>();
+            _shipKeys = new ObservableCollection<GameObjectQuantity>();
             _weapons = new ObservableCollection<GameObjectQuantity>();
+             
         }
         #endregion
 
-        #region METHODS
-        public override string GetPlayerBio()
-        {
-            string Bio = null;
-
-            if (Race == Races.Mandalorian)
-            {
-                Bio = "The mandalorians were a proud race of bounty hunters. The most famous of which are the late Jango Fett and his son, Boba Fett.";
-            }
-            else if (Race == Races.Human)
-            {
-                Bio = "The humans are a poplulace sentiant race primarily from Corellia. They are found all over the galaxy and are a balanced race. Notable humans are Han Solo and Luke Skywalker.";
-            }
-            else if (Race == Races.Wookie)
-            {
-                Bio = "Hailing from their homeworld of Kashyyk, Wookies are tall, furry creatures. Known for feirce strength, they were often used as slaves by the Empire. Noteable wookies are Chewbacca and Gungi";
-            }
-            else
-            {
-                Bio = "No Biography on this race is available.";
-            }
-
-            return Bio;
-        }
-
-
-        public override string GetPlayerGreeting(Player player)
-        {
-            string Greeting = null;
-
-            if (player.Align == Alignments.Good)
-            {
-                Greeting = $"Hello, I am {player.Name}, Pleasure to meet you.";
-            }
-            else if (player.Align == Alignments.Neutral)
-            {
-                Greeting = $"I am {player.Name}";
-            }
-            else if (player.Align == Alignments.Evil)
-            {
-                Greeting = $"I am {player.Name}, get out of my way or die.";
-            }
-
-            return Greeting;
-        }
+        #region METHODS        
 
         public void UpdateInventoryCategories()
         {
             Elixirs.Clear();
-            Ships.Clear();
+            ShipKeys.Clear();
             Weapons.Clear();
             Armor.Clear();
 
@@ -178,7 +201,7 @@ namespace TBQuestBasic.Models
             {
                 if (gameItemQuantity.GameObject is Weapons) Weapons.Add(gameItemQuantity);
                 if (gameItemQuantity.GameObject is Armor) Armor.Add(gameItemQuantity);
-                if (gameItemQuantity.GameObject is PlayerShip) Ships.Add(gameItemQuantity);
+                if (gameItemQuantity.GameObject is ShipKeys) ShipKeys.Add(gameItemQuantity);
                 if (gameItemQuantity.GameObject is Elixirs) Elixirs.Add(gameItemQuantity);
             }
         }

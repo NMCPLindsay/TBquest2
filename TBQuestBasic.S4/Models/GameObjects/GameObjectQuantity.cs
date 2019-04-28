@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TBQuestBasic.Models
+namespace TBQuestBasic.Models.GameObjects
 {
     public class GameObjectQuantity
     {
-        public GameObjects GameObject { get; set; }
+        public GameObject GameObject { get; set; }
         public int Quantity { get; set; }
 
         public GameObjectQuantity()
@@ -16,7 +16,7 @@ namespace TBQuestBasic.Models
 
         }
 
-        public GameObjectQuantity(GameObjects gameObject, int quantity)
+        public GameObjectQuantity(GameObject gameObject, int quantity)
         {
             GameObject = gameObject;
             Quantity = quantity;

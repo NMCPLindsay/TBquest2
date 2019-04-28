@@ -35,7 +35,7 @@ namespace TBQuestBasic.PresentationLayer
 
         private void SetupWindow()
         {
-            List<string> races = Enum.GetNames(typeof(Character.Races)).ToList();
+            List<string> races = Enum.GetNames(typeof(Player.Races)).ToList();
             List<string> alignments = Enum.GetNames(typeof(Player.Alignments)).ToList();
             PlayerRaceComboBox.ItemsSource = races;
             AlignmentComboBox.ItemsSource = alignments;
@@ -97,7 +97,7 @@ namespace TBQuestBasic.PresentationLayer
             if (IsValidInput(out errorMessage))
             {
                 
-                Enum.TryParse(PlayerRaceComboBox.SelectionBoxItem.ToString(), out Character.Races race);
+                Enum.TryParse(PlayerRaceComboBox.SelectionBoxItem.ToString(), out Player.Races race);
                 Enum.TryParse(AlignmentComboBox.SelectionBoxItem.ToString(), out Player.Alignments alignment);
                 
               
@@ -109,6 +109,13 @@ namespace TBQuestBasic.PresentationLayer
                 _player.Name = PlayerNameTextBox.Text;
                 _player.ImgFileName = SetPlayerImage();
                 _player.Bio = BioTextBox.Text;
+                _player.Charisma = AttributeRoll();
+                _player.Constitution = AttributeRoll();
+                _player.Dexterity = AttributeRoll();
+                _player.Intelligence = AttributeRoll();
+                _player.Strength = AttributeRoll();
+                _player.Wisdom = AttributeRoll();
+
                 Visibility = Visibility.Hidden;
             }
             else
@@ -135,6 +142,22 @@ namespace TBQuestBasic.PresentationLayer
                 ErrorMsgLabel.Visibility = Visibility.Visible;
                 ErrorMsgLabel.Content = errorMessage;
             }
+        }
+
+        private int AttributeRoll()
+        {
+            int attribute = 0;
+            DiceBag diceBag = new DiceBag();
+            List<int> rolls = new List<int>();
+
+            rolls = diceBag.RollQuantity(DiceBag.Dice.D6, 4);
+            foreach (int roll in rolls)
+            {
+                attribute = attribute + roll;
+            }
+
+            return attribute;
+
         }
     }
 }

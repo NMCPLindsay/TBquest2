@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TBQuestBasic.Models.Interface;
 
-namespace TBQuestBasic.Models.Interface
+namespace TBQuestBasic.Models.NPC
 {
-    interface ITrade
+    public class Enemies : NPC, IBattle
     {
     }
 }

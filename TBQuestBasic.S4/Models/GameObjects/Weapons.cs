@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TBQuestBasic.Models
+namespace TBQuestBasic.Models.GameObjects
 {
-    public class Weapons : GameObjects
+    public class Weapons : GameObject
     {
         public enum Types
         {
@@ -33,7 +33,7 @@ namespace TBQuestBasic.Models
 
 
         public Weapons(int id, string name, int weaponDamage, Types type, string description)
-            :base(id,name, description)
+            :base(id, name, description)
         {
             WeaponDamage = weaponDamage;
             Type = type;
