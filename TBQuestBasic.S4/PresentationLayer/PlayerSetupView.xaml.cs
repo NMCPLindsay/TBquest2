@@ -70,9 +70,9 @@ namespace TBQuestBasic.PresentationLayer
 
             if (PlayerRaceComboBox.SelectedItem.Equals("Mandalorian"))
             {
-                PlayerImage.Source = new BitmapImage(new Uri(@"..\..\Assets\mandalorian.jpg", UriKind.Relative));
+                PlayerImage.Source = new BitmapImage(new Uri(@"..\..\Assets\mandolorian.jpg", UriKind.Relative));
                 BioTextBox.Text = "The mandalorians were a proud race of bounty hunters. The most famous of which are the late Jango Fett and his son, Boba Fett.";
-                tempUri = new Uri(@"..\..\Assets\mandalorian.jpg", UriKind.Relative);
+                tempUri = new Uri(@"..\..\Assets\mandolorian.jpg", UriKind.Relative);
             }
             else if (PlayerRaceComboBox.SelectedItem.Equals("Human"))
             {
@@ -103,8 +103,7 @@ namespace TBQuestBasic.PresentationLayer
               
                 _player.Race = race;
                 _player.Align = alignment;
-                _player.EXP = 0;
-                _player.HitPoints = 100;
+                _player.EXP = 0;                
                 _player.Level = 1;
                 _player.Name = PlayerNameTextBox.Text;
                 _player.ImgFileName = SetPlayerImage();
@@ -115,7 +114,14 @@ namespace TBQuestBasic.PresentationLayer
                 _player.Intelligence = AttributeRoll();
                 _player.Strength = AttributeRoll();
                 _player.Wisdom = AttributeRoll();
-
+                _player.CharismaModifier = AttributeModifier(_player.Charisma);
+                _player.ConstitutionModifier = AttributeModifier(_player.Constitution);
+                _player.DexterityModifier = AttributeModifier(_player.Dexterity);
+                _player.IntelligenceModifier = AttributeModifier(_player.Intelligence);
+                _player.StrengthModifier = AttributeModifier(_player.Strength);
+                _player.WisdomModifier = AttributeModifier(_player.Wisdom);
+                _player.HitPoints = HitPointCalculator(_player.ConstitutionModifier);
+                _player.ArmorClass = 10;
                 Visibility = Visibility.Hidden;
             }
             else
@@ -126,7 +132,86 @@ namespace TBQuestBasic.PresentationLayer
         
         }
 
-      
+        private double HitPointCalculator(int constitutionModifier)
+        {
+            int modifier = constitutionModifier;        
+            DiceBag diceBag = new DiceBag();
+            return diceBag.RollWithModifier(DiceBag.Dice.D8, modifier);
+        }
+
+        private int AttributeModifier(int attributeScore)
+        {
+            int modifier;
+            if (attributeScore <= 1 )
+            {
+                modifier = -5;
+            }
+            else if (attributeScore== 2 || attributeScore == 3 )
+            {
+                modifier = -4;
+            }
+            else if (attributeScore == 4 || attributeScore == 5)
+            {
+                modifier = -3;
+            }
+            else if (attributeScore == 6 || attributeScore == 7)
+            {
+                modifier = -2;
+            }
+            else if (attributeScore == 8 || attributeScore == 9)
+            {
+                modifier = -1;
+            }
+            else if (attributeScore == 10 || attributeScore == 11)
+            {
+                modifier = 0;
+            }
+            else if (attributeScore == 12 || attributeScore == 13)
+            {
+                modifier = 1;
+            }
+            else if (attributeScore == 14 || attributeScore == 15)
+            {
+                modifier = 2;
+            }
+            else if (attributeScore == 16 || attributeScore ==17)
+            {
+                modifier = 3;
+            }
+            else if (attributeScore == 18 || attributeScore == 19)
+            {
+                modifier = 4;
+            }           
+            else if (attributeScore == 20 || attributeScore == 21)
+            {
+                modifier = 5;
+            }
+            else if (attributeScore == 22 || attributeScore == 23)
+            {
+                modifier = 6;
+            }
+            else if (attributeScore == 24 || attributeScore == 25)
+            {
+                modifier = 7;
+            }
+            else if (attributeScore == 26 || attributeScore == 27)
+            {
+                modifier = 8;
+            }
+            else if (attributeScore == 28 || attributeScore == 29)
+            {
+                modifier = 9;
+            }
+            else if (attributeScore >= 30)
+            {
+                modifier = 10;
+            }
+            else
+            {
+                modifier = 0;
+            }
+            return modifier;
+        }
 
         private void PlayerRaceComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

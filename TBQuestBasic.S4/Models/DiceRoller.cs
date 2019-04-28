@@ -92,7 +92,7 @@ namespace TBQuestBasic
         /// <param name="dice">The dice.</param>
         /// <param name="modifier">The modifier.</param>
         /// <returns></returns>
-        public int RollWithModifier(Dice dice, uint modifier)
+        public int RollWithModifier(Dice dice, int modifier)
         {
             return InternalRoll((uint)dice) + (int)modifier;
         }

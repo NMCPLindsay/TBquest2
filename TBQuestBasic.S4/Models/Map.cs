@@ -81,6 +81,7 @@ namespace TBQuestBasic.Models
             _maxPlanetId = maxPlanetId;
             _maxPLocationId = maxPLocationId;
             _maxBuildingId = maxBuildingId;
+            _locations = new Location[maxPlanetId, maxPLocationId, _maxBuildingId];
 
         }
 

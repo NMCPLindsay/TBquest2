@@ -102,22 +102,24 @@ namespace TBQuestBasic.PresentationLayer
 
         }
 
-        public GameSessionViewModel(Player player, List<string> initialMessages, Map gameMap, Location currentLocation)
+        public GameSessionViewModel(Player player, List<string> initialMessages, Map gameMap, GameMapCoordinates currentLocationCoordinates)
         {
 
             _player = player;
             _gameMap = gameMap;
-            _currentLocation = currentLocation;
             
+            _gameMap.CurrentLocationCoordinates = currentLocationCoordinates;
+            _currentLocation = gameMap.CurrentLocation;
             _messages = initialMessages;            
             
             _accessibleLocations = gameMap.AccessibleLocations;
+            
         }
 
 
         public void OnMove()
         {
-            _gameMap.AccessibleLocations = GameData.ShipRangeToDistance(CurrentLocation, PlayerShip);
+            
         }
 
     }

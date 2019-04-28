@@ -18,7 +18,7 @@ namespace TBQuestBasic.BusinessLayer
         PlayerSetupView _playerSetupView;
         Map _gameMap;
         Location _currentLocation;
-        
+        GameMapCoordinates _initialLocationCoordinates;
 
 
         public GameBusiness()
@@ -57,7 +57,7 @@ namespace TBQuestBasic.BusinessLayer
                 _player, 
                 _messages, 
                 _gameMap, 
-                _currentLocation
+                _initialLocationCoordinates
                 );
             GameSessionView gameSessionView = new GameSessionView(_gameSessionViewModel);
 
@@ -78,7 +78,7 @@ namespace TBQuestBasic.BusinessLayer
             
             _messages = GameData.InitialMessages(_player);
             _gameMap = GameData.GameMapData();
-            _currentLocation = _gameMap.CurrentLocation;
+            _initialLocationCoordinates = GameData.InitialGameLocation();
             
 
         }

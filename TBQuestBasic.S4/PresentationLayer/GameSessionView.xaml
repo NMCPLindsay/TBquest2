@@ -144,35 +144,7 @@
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </TabItem>
-                            <TabItem Header="NPCs"
-                                        x:Name="NPCInfoTabItem">
-                                <DataGrid 
-                                            x:Name="NPCDataGrid"
-                                            Height="150"
-                                            ItemsSource="{Binding CurrentLocation.NPCs}" 
-                                            SelectedItem="{Binding CurrentNPC}"
-                                            AutoGenerateColumns="False"
-                                            HeadersVisibility="Column">
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn 
-                                                    Header="Description" 
-                                                    IsReadOnly="True"                 
-                                                    Binding="{Binding NPC.Information, Mode=OneWay}"
-                                                    Width="*">
-                                            <DataGridTextColumn.ElementStyle>
-                                                <Style>
-                                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
-                                                </Style>
-                                            </DataGridTextColumn.ElementStyle>
-                                        </DataGridTextColumn>
-                                        <DataGridTextColumn 
-                                                    Header="Qty"
-                                                    IsReadOnly="True"
-                                                    Width="Auto"
-                                                    Binding="{Binding Quantity, Mode=OneWay}"/>
-                                    </DataGrid.Columns>
-                                </DataGrid>
-                            </TabItem>
+                            
                         </TabControl>
 
 
@@ -271,7 +243,7 @@
                     </Grid>
                 </StackPanel>
                 <Grid Grid.Row="2">
-                        <Image Name="LocationImage"/>
+                        <Image Name="LocationImage" Source="{Binding CurrentLocation.LocationImage}"/>
                     </Grid>
                 </Grid>
             
@@ -355,28 +327,7 @@
                                 </DataGrid.Columns>
                             </DataGrid>
                         </TabItem>
-                        <TabItem Header="Ship Keys"
-                                x:Name="ShipTabItem">
-                            <DataGrid 
-                                    x:Name="ShipsDataGrid"
-                                    ItemsSource="{Binding Player.Ships}"
-                                    SelectedItem="{Binding CurrentGameItem}"
-                                    AutoGenerateColumns="False"
-                                    HeadersVisibility="Column">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Name"
-                                                Binding="{Binding GameItem.Name, Mode=OneWay}"
-                                                Width="*"/>
-                                    <DataGridTextColumn Header="Qty"
-                                                IsReadOnly="True"
-                                                Width="Auto"
-                                                Binding="{Binding Quantity, Mode=OneWay}"/>
-                                    <DataGridTextColumn Header="Value"
-                                                Binding="{Binding GameItem.Value, Mode=OneWay}"
-                                                Width="Auto"/>
-                                </DataGrid.Columns>
-                            </DataGrid>
-                        </TabItem>
+                        
 
                     </TabControl>
 

@@ -34,7 +34,7 @@ namespace TBQuestBasic.Models
             set { _locationImage = value; }
         }
 
-        public ObservableCollection<NPC.NPC> NPCs
+        public ObservableCollection<NPC.NPC> NPCS
         {
             get { return _npcs; }
             set { _npcs = value; }

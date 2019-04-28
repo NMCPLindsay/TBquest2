@@ -149,5 +149,8 @@
     <Resource Include="Assets\moseisleyterminal.jpg" />
     <Resource Include="Assets\tattooineorbit.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\bountyforcehq.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

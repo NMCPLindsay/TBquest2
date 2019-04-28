@@ -48,10 +48,69 @@ namespace TBQuestBasic.Models
         private int _cha;
         private int _wis;
         private int _con;
+        private int _armorClass;
+        private int _strMod;
+        private int _dexMod;
+        private int _intMod;
+        private int _chaMod;
+        private int _wisMod;
+        private int _conMod;
+
+
+
+
+
 
         #endregion
 
         #region PROPERTIES
+
+        public int ConstitutionModifier
+        {
+            get { return _conMod; }
+            set { _conMod = value; }
+        }
+
+
+        public int WisdomModifier
+        {
+            get { return _wisMod; }
+            set { _wisMod = value; }
+        }
+
+
+        public int CharismaModifier
+        {
+            get { return _chaMod; }
+            set { _chaMod = value; }
+        }
+
+
+        public int IntelligenceModifier
+        {
+            get { return _intMod; }
+            set { _intMod = value; }
+        }
+
+
+        public int DexterityModifier
+        {
+            get { return _dexMod; }
+            set { _dexMod = value; }
+        }
+
+
+        public int StrengthModifier
+        {
+            get { return _strMod; }
+            set { _strMod = value; }
+        }
+
+        public int ArmorClass
+        {
+            get { return _armorClass; }
+            set { _armorClass = value; }
+        }
 
         public int Constitution
         {
