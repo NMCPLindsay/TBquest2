@@ -88,62 +88,22 @@ namespace TBQuestBasic.Models
         #endregion
 
         #region METHODS
-
-        public Location GetNextPlanetLocation()
+        public ObservableCollection<Location> AvailiblePlanetLocations()
         {
+            ObservableCollection<Location> availablePlanetLocations = new ObservableCollection<Location>();
 
-            Location nextPlanet = null;
-
-            //
-            // Checks that location is an orbit location and that there is a location after.
-            //
-            if (_currentLocationCoordinates.LocationId == 0 && _currentLocationCoordinates.BuildingId == 0 && _currentLocationCoordinates.PlanetId > 0)
+            if (_currentLocationCoordinates.LocationId == 0 && _currentLocationCoordinates.BuildingId == 0 )
             {
-                Location nextPlanetLocation = _locations[_currentLocationCoordinates.PlanetId + 1, _currentLocationCoordinates.LocationId, _currentLocationCoordinates.BuildingId];
+                
+            }
 
-                //
-                // location exists and player can access location
-                //
-                if (nextPlanet != null)
-                {
-                    nextPlanet = nextPlanetLocation;
-                }
-            }
-            else
-            {
-                nextPlanet = null;
-            }
-            return nextPlanet;
+
+
 
         }
+    
 
-        public Location GetPreviousPlanetLocation()
-        {
-
-            Location previousPlanet = null;
-
-            //
-            // Check current location is orbit and sees if there is a location before.
-            //
-            if (_currentLocationCoordinates.LocationId == 0 && _currentLocationCoordinates.BuildingId == 0 && _currentLocationCoordinates.PlanetId > 0)
-            {
-                Location previousPlanetLocation = _locations[_currentLocationCoordinates.PlanetId - 1, _currentLocationCoordinates.LocationId, _currentLocationCoordinates.BuildingId];
-
-                //
-                // location exists and player can access location
-                //
-                if (previousPlanetLocation != null)
-                {
-                    previousPlanet = previousPlanetLocation;
-                }
-            }
-            else
-            {
-                previousPlanet = null;
-            }
-            return previousPlanet;
-
-        }
+        
 
 
 
