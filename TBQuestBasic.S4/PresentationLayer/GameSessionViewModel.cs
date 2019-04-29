@@ -31,10 +31,80 @@ namespace TBQuestBasic.PresentationLayer
         private Location _building3;
         private Location _building4;
         private Location _previousPlanet;
+        private GameObjectQuantity _currentGameObject;
+        private NPC _currentNPC;
+        private Armor _currentHelm;
+        private Armor _currentChest;
+        private Armor _currentLegs;
+        private Armor _currentHands;
+        private Armor _currentFeet;
+        private Weapons _currentWeapon;
 
         #endregion
 
         #region PROPERTIES
+
+        public Weapons CurrentWeapon
+        {
+            get { return _currentWeapon; }
+            set { _currentWeapon = value; OnPropertyChanged(nameof(CurrentWeapon)); }
+        }
+
+        public Armor CurrentFeet
+        {
+            get { return _currentFeet; }
+            set { _currentFeet = value; OnPropertyChanged(nameof(CurrentFeet)); }
+        }
+
+        public Armor CurrentHands
+        {
+            get { return _currentHands; }
+            set { _currentHands = value; OnPropertyChanged(nameof(CurrentHands)); }
+        }
+
+        public Armor CurrentLegs
+        {
+            get { return _currentLegs; }
+            set { _currentLegs = value; OnPropertyChanged(nameof(CurrentLegs)); }
+        }
+
+
+        public Armor CurrentChest
+        {
+            get { return _currentChest; }
+            set { _currentChest = value; OnPropertyChanged(nameof(CurrentChest)); }
+        }
+
+
+        public Armor CurrentHelm
+        {
+            get { return _currentHelm; }
+            set
+            {
+                _currentHelm = value;
+                OnPropertyChanged(nameof(CurrentHelm));
+            }
+        }
+
+        public NPC CurrentNPC
+        {
+            get { return _currentNPC; }
+            set
+            {
+                _currentNPC = value;
+                OnPropertyChanged(nameof(CurrentNPC));
+            }
+        }
+
+        public GameObjectQuantity CurrentGameObject
+        {
+            get { return _currentGameObject; }
+            set
+            {
+                _currentGameObject = value;
+                OnPropertyChanged(nameof(_currentGameObject));
+            }
+        }
 
         public Location PreviousPlanet
         {
@@ -385,6 +455,108 @@ namespace TBQuestBasic.PresentationLayer
                 UpdateAvailableLocations();
             }
             
+        }
+        public void AddObjectToInventory()
+        {
+            //
+            // confirm a game item selected and is in current location
+            // subtract from location and add to inventory
+            //
+            if (_currentGameObject != null && _currentLocation.GameObjects.Contains(_currentGameObject))
+            {
+                //
+                // cast selected game item 
+                //
+                GameObjectQuantity selectedGameItemQuantity = _currentGameObject as GameObjectQuantity;
+
+                _currentLocation.RemoveGameItemQuantityFromLocation(selectedGameItemQuantity);
+                _player.AddGameItemQuantityToInventory(selectedGameItemQuantity);
+
+                
+            }
+        }
+        public void RemoveItemFromInventory()
+        {
+            //
+            // confirm a game item selected and is in inventory
+            // subtract from inventory and add to location
+            //
+            if (_currentGameObject != null)
+            {
+                //
+                // cast selected game item 
+                //
+                GameObjectQuantity selectedGameObjectQuantity = _currentGameObject as GameObjectQuantity;
+
+                _currentLocation.AddGameObjectQuantityToLocation(selectedGameObjectQuantity);
+                _player.RemoveGameItemQuantityFromInventory(selectedGameObjectQuantity);
+
+                
+            }
+        }
+
+        public void OnUseGameItem()
+        {
+            switch (_currentGameObject.GameObject)
+            {
+                case Elixirs elixir:
+                    ProcessElixirUse(elixir);
+                    break;
+                
+                default:
+                    break;
+            }
+        }
+
+        private void ProcessElixirUse(Elixirs elixir)
+        {
+            _player.HitPoints += elixir.HealthChange;
+            _player.RemoveGameItemQuantityFromInventory(_currentGameObject);
+        }
+        public void EquipObject()
+        {
+            if (_currentGameObject != null)
+            {
+                GameObject selectedGameObject = _currentGameObject.GameObject;
+
+                if (selectedGameObject is Weapons)
+                {
+                    Weapons equippedWeapon = selectedGameObject as Weapons;
+                  
+                   
+                        _currentWeapon = equippedWeapon;
+                        _player.RemoveGameItemQuantityFromInventory(_currentGameObject);
+                    
+               
+                    
+                    
+                }
+                if (selectedGameObject is Armor)
+                {
+                    Armor equippedArmor = selectedGameObject as Armor;
+                    switch (equippedArmor.Type)
+                    {
+                        case Armor.Types.Headgear:
+                            _currentHelm = equippedArmor;
+                            break;
+                        case Armor.Types.Chest:
+                            _currentChest = equippedArmor;
+                            break;
+                        case Armor.Types.Legs:
+                            _currentLegs = equippedArmor;
+                            break;
+                        case Armor.Types.Hands:
+                            _currentHands = equippedArmor;
+                            break;
+                        case Armor.Types.Feet:
+                            CurrentFeet = equippedArmor;
+                            break;
+                        default:
+                            break;
+                    }
+                   
+                }
+            }
         }
         #endregion
 

@@ -98,7 +98,7 @@ namespace TBQuestBasic.Models
 
         public Location()
         {
-            
+            _gameObjects = new ObservableCollection<GameObjectQuantity>(); 
         }
 
         #endregion
@@ -109,7 +109,58 @@ namespace TBQuestBasic.Models
             return _name;
         }
 
+        public void AddGameObjectQuantityToLocation(GameObjectQuantity selectedGameItemQuantity)
+        {
+            GameObjectQuantity gameObjectQuantity = _gameObjects.FirstOrDefault(i => i.GameObject.Id == selectedGameItemQuantity.GameObject.Id);
+
+            if (gameObjectQuantity == null)
+            {
+                GameObjectQuantity newGamObjectQuantity = new GameObjectQuantity();
+                newGamObjectQuantity.GameObject = selectedGameItemQuantity.GameObject;
+                newGamObjectQuantity.Quantity = 1;
+
+                _gameObjects.Add(newGamObjectQuantity);
+            }
+            else
+            {
+                gameObjectQuantity.Quantity++;
+            }
+            UpdateLocationGameObjects();
+        }
+
+        public void UpdateLocationGameObjects()
+        {
+            ObservableCollection<GameObjectQuantity> updatedLocationObjects = new ObservableCollection<GameObjectQuantity>();
+
+            foreach (GameObjectQuantity gameObjectQuantity in _gameObjects)
+            {
+                updatedLocationObjects.Add(gameObjectQuantity);
+            }
+            GameObjects.Clear();
+            foreach (GameObjectQuantity gameObjectQuantity in updatedLocationObjects)
+            {
+                GameObjects.Add(gameObjectQuantity);
+            }
+        }
+
+        public void RemoveGameItemQuantityFromLocation(GameObjectQuantity selectedGameObjectQuantity)
+        {
+            GameObjectQuantity gameObjectQuantity = _gameObjects.FirstOrDefault(i => i.GameObject.Id == selectedGameObjectQuantity.GameObject.Id);
+
+            if (gameObjectQuantity != null)
+            {
+                if (selectedGameObjectQuantity.Quantity ==1)
+                {
+                    _gameObjects.Remove(gameObjectQuantity);
+                }
+                else
+                {
+                    gameObjectQuantity.Quantity--;
+                }
+            }
+            UpdateLocationGameObjects();
+        }
         #endregion
-        
+
     }
 }

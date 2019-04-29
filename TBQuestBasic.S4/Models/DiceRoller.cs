@@ -60,18 +60,19 @@ namespace TBQuestBasic
             D20 = 20
         };
 
-        private Random _rng;
+        private Random _rng = new Random();
 
         public DiceBag()
         {
-            _rng = new Random();
+            
         }
 
         /**
          * The default dice-rolling method. All methods link to this one.
          */
-       public int InternalRoll(uint dice)
+       private int InternalRoll(uint dice)
         {
+            
             return 1 + _rng.Next((int)dice);
         }
 
@@ -108,6 +109,7 @@ namespace TBQuestBasic
             List<int> rolls = new List<int>();
             for (int i = 0; i < times; i++)
             {
+                
                 rolls.Add(InternalRoll((uint)d));
             }
             return rolls;

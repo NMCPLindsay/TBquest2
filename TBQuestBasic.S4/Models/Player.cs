@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TBQuestBasic.DataLayer;
 using System.Collections.ObjectModel;
 using TBQuestBasic.Models.GameObjects;
+using System.Windows.Data;
 
 
 namespace TBQuestBasic.Models
@@ -55,102 +56,150 @@ namespace TBQuestBasic.Models
         private int _chaMod;
         private int _wisMod;
         private int _conMod;
-
-
-
-
-
+        private Armor _currentHelm;
+        private Armor _currentChest;
+        private Armor _currentLegs;
+        private Armor _currentHands;
+        private Armor _currentFeet;
+        private Weapons _currentWeapon;
 
         #endregion
 
         #region PROPERTIES
 
+        public Weapons CurrentWeapon
+        {
+            get { return _currentWeapon; }
+            set { _currentWeapon = value; OnPropertyChanged(nameof(CurrentWeapon)); }
+        }
+
+        public Armor CurrentFeet
+        {
+            get { return _currentFeet; }
+            set { _currentFeet = value; OnPropertyChanged(nameof(CurrentFeet)); }
+        }
+
+        public Armor CurrentHands
+        {
+            get { return _currentHands; }
+            set { _currentHands = value; OnPropertyChanged(nameof(CurrentHands)); }
+        }
+
+        public Armor CurrentLegs
+        {
+            get { return _currentLegs; }
+            set { _currentLegs = value; OnPropertyChanged(nameof(CurrentLegs)); }
+        }
+
+
+        public Armor CurrentChest
+        {
+            get { return _currentChest; }
+            set { _currentChest = value; OnPropertyChanged(nameof(CurrentChest)); }
+        }
+
+
+        public Armor CurrentHelm
+        {
+            get { return _currentHelm; }
+            set
+            {
+                _currentHelm = value;
+                OnPropertyChanged(nameof(CurrentHelm));
+            }
+        }
+
+
         public int ConstitutionModifier
         {
             get { return _conMod; }
-            set { _conMod = value; }
+            set
+            {
+                _conMod = value;
+                OnPropertyChanged(nameof(ConstitutionModifier));
+            }
         }
 
 
         public int WisdomModifier
         {
             get { return _wisMod; }
-            set { _wisMod = value; }
+            set { _wisMod = value; OnPropertyChanged(nameof(WisdomModifier)); }
         }
 
 
         public int CharismaModifier
         {
             get { return _chaMod; }
-            set { _chaMod = value; }
+            set { _chaMod = value; OnPropertyChanged(nameof(CharismaModifier)); }
         }
 
 
         public int IntelligenceModifier
         {
             get { return _intMod; }
-            set { _intMod = value; }
+            set { _intMod = value; OnPropertyChanged(nameof(IntelligenceModifier)); }
         }
 
 
         public int DexterityModifier
         {
             get { return _dexMod; }
-            set { _dexMod = value; }
+            set { _dexMod = value; OnPropertyChanged(nameof(DexterityModifier)); }
         }
 
 
         public int StrengthModifier
         {
             get { return _strMod; }
-            set { _strMod = value; }
+            set { _strMod = value; OnPropertyChanged(nameof(StrengthModifier)); }
         }
 
         public int ArmorClass
         {
             get { return _armorClass; }
-            set { _armorClass = value; }
+            set { _armorClass = value; OnPropertyChanged(nameof(ArmorClass)); }
         }
 
         public int Constitution
         {
             get { return _con; }
-            set { _con = value; }
+            set { _con = value; OnPropertyChanged(nameof(Constitution)); }
         }
 
 
         public int Wisdom
         {
             get { return _wis; }
-            set { _wis = value; }
+            set { _wis = value; OnPropertyChanged(nameof(Wisdom)); }
         }
 
 
         public int Charisma
         {
             get { return _cha; }
-            set { _cha = value; }
+            set { _cha = value; OnPropertyChanged(nameof(Charisma)); }
         }
 
 
         public int Intelligence
         {
             get { return _int; }
-            set { _int = value; }
+            set { _int = value; OnPropertyChanged(nameof(Intelligence)); }
         }
 
 
         public int Dexterity
         {
             get { return _dex; }
-            set { _dex = value; }
+            set { _dex = value; OnPropertyChanged(nameof(Dexterity)); }
         }
 
 
         public int Strength
         {
             get { return _str; }
-            set { _str = value; }
+            set { _str = value; OnPropertyChanged(nameof(Strength)); }
         }
 
         public string Bio
@@ -210,21 +259,34 @@ namespace TBQuestBasic.Models
         public double EXP
         {
             get { return _exp; }
-            set { _exp = value; }
+            set
+            {
+
+                _exp = value;
+                OnPropertyChanged(nameof(EXP));
+            }
         }
 
 
         public double HitPoints
         {
             get { return _hitPoints; }
-            set { _hitPoints = value; }
+            set
+            {
+                _hitPoints = value;
+                OnPropertyChanged(nameof(HitPoints));
+            }
         }
 
 
         public int Level
         {
             get { return _level; }
-            set { _level = value; }
+            set
+            {
+                _level = value;
+                OnPropertyChanged(nameof(Level));
+            }
         }
 
 

@@ -134,9 +134,17 @@ namespace TBQuestBasic.PresentationLayer
 
         private double HitPointCalculator(int constitutionModifier)
         {
-            int modifier = constitutionModifier;        
+            int modifier = constitutionModifier;
+            int addRoll=0;
+            double rollsMod;
             DiceBag diceBag = new DiceBag();
-            return diceBag.RollWithModifier(DiceBag.Dice.D8, modifier);
+            List<int> rolls = diceBag.RollQuantity(DiceBag.Dice.D8, 4);
+            foreach (int roll in rolls)
+            {
+                addRoll = addRoll + roll;
+            }
+            rollsMod = addRoll + modifier;
+            return rollsMod;
         }
 
         private int AttributeModifier(int attributeScore)

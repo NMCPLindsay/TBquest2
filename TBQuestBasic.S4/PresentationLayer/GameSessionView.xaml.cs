@@ -85,5 +85,41 @@ namespace TBQuestBasic.PresentationLayer
         {
             _gameSessionViewModel.MoveToNextPlanet();
         }
+
+        private void PickUpItemButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (LocationItemsDataGrid.SelectedItem !=null)
+            {
+                _gameSessionViewModel.AddObjectToInventory();
+
+            }
+        }
+
+        private void DropItemButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (PlayerDataTabControl.SelectedItem != null)
+            {
+                _gameSessionViewModel.RemoveItemFromInventory();
+            }
+            
+        }
+
+        private void UseItemButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (PlayerDataTabControl.SelectedItem != null)
+            {
+                _gameSessionViewModel.OnUseGameItem();
+            }
+            
+        }
+
+        private void EquipItemButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (PlayerDataTabControl.SelectedItem != null)
+            {
+                _gameSessionViewModel.EquipObject();
+            }
+            
+        }
     }
 }

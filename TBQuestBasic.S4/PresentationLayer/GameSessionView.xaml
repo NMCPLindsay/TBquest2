@@ -51,7 +51,7 @@
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="IsReadOnly" Value="True"/>
-            
+
             <Style.Triggers>
                 <Trigger Property="IsFocused" Value="True">
                     <Setter Property="Background" Value="WhiteSmoke" />
@@ -100,14 +100,14 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
-            
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="4*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0" Margin="0"  Background="#FF1A1A5F">
-                
+
                 <Grid.RowDefinitions>
                     <RowDefinition Height="2*"/>
                     <RowDefinition Height="1*"/>
@@ -151,16 +151,16 @@
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </TabItem>
-                            
+
                         </TabControl>
 
 
                     </StackPanel>
 
                 </Grid>
-                
 
-                
+
+
                 <Grid Grid.Row="1" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
@@ -173,14 +173,13 @@
                         <Button Name="TalkButton" Style="{StaticResource ButtonStyle}" Content="Talk"/>
                         <Button Name="TradeButton" Style="{StaticResource ButtonStyle}" Content="Trade"/>
                         <Button Name="BattleButton" Style="{StaticResource ButtonStyle}" Content="Battle"/>
-                        
+
                     </StackPanel>
 
                     <StackPanel Grid.Column="1">
                         <Label Style="{StaticResource HeaderStyle}" Content="Item Controls"/>
-                        <Button Name="PickUpItemButton" Style="{StaticResource ButtonStyle}" Content="Pick up"/>
-                        <Button Name="EquipItemButton" Style="{StaticResource ButtonStyle}" Content="Equip"/>
-                        <Button Name="Useitem" Style="{StaticResource ButtonStyle}" Content="Use"/>
+                        <Button Name="PickUpItemButton" Style="{StaticResource ButtonStyle}" Content="Pick up" Click="PickUpItemButton_Click"/>
+
 
                     </StackPanel>
 
@@ -191,7 +190,7 @@
                         <Button Name="TakeOffButton" Style="{StaticResource ButtonStyle}" Content="Take off"/>
 
                     </StackPanel>
-                    
+
                 </Grid>
 
                 <Grid Grid.Row="2">
@@ -205,14 +204,14 @@
                         <Image Name="ShipImage"/>
                     </Grid>
                     <StackPanel Grid.Column="1" Orientation="Vertical">
-                        
+
                     </StackPanel>
                     <StackPanel Grid.Column="2" Orientation="Vertical">
-                        
+
                     </StackPanel>
-                      
+
                 </Grid>
-                
+
             </Grid>
 
 
@@ -271,8 +270,8 @@
                                 <TextBox Style="{StaticResource DetailTextBoxStyle}"  HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Text="{Binding NextPlanetLocation.Name}" Margin="0,5,0,5" />
                             </StackPanel>
                         </Grid>
-                       
-                   
+
+
                         <Grid Grid.Column="2">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
@@ -292,7 +291,7 @@
                                 <TextBox Style="{StaticResource DetailTextBoxStyle}" HorizontalAlignment="Left"  VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Text="{Binding Building4.Name}" Margin="0,5,0,5"/>
                             </StackPanel>
                         </Grid>
-                        
+
                         <Grid Grid.Column="3">
                             <Button Name="ExitBuildingButton" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource ButtonStyle}" Content="Return" Click="ExitBuildingButton_Click"/>
 
@@ -300,14 +299,14 @@
                     </Grid>
                 </StackPanel>
                 <Grid Grid.Row="2">
-                        <Image Name="LocationImage" Source="{Binding CurrentLocation.LocationImage}"/>
-                    </Grid>
+                    <Image Name="LocationImage" Source="{Binding CurrentLocation.LocationImage}"/>
                 </Grid>
-            
+            </Grid>
+
 
             <Grid Grid.Column="2">
                 <Border Style="{StaticResource BorderStyle}"/>
-                <StackPanel Grid.Column="2" Background="#FF420808" Margin="4" >
+                <StackPanel Background="#FF420808" Margin="8,3,-0.4,4.4" >
 
                     <Label Style="{StaticResource HeaderStyle}"
                     Content="Inventory Interface"/>
@@ -325,16 +324,14 @@
                                     AutoGenerateColumns="False"
                                     HeadersVisibility="Column">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Name"
-                                                Binding="{Binding GameItem.Name, Mode=OneWay}"
+                                    <DataGridTextColumn Header="Description"
+                                                Binding="{Binding GameObject.Information, Mode=OneWay}"
                                                 Width="*"/>
                                     <DataGridTextColumn Header="Qty"
                                                 IsReadOnly="True"
                                                 Width="Auto"
                                                 Binding="{Binding Quantity, Mode=OneWay}"/>
-                                    <DataGridTextColumn Header="Value"
-                                                Binding="{Binding GameItem.Value, Mode=OneWay}"
-                                                Width="Auto"/>
+
                                 </DataGrid.Columns>
                             </DataGrid>
                         </TabItem>
@@ -344,12 +341,12 @@
                             <DataGrid 
                                     x:Name="WeaponsDataGrid"
                                     ItemsSource="{Binding Player.Weapons}"
-                                    SelectedItem="{Binding CurrentGameItem}"
+                                    SelectedItem="{Binding CurrentGameObject}"
                                     AutoGenerateColumns="False"
                                     HeadersVisibility="Column">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Name"
-                                                Binding="{Binding GameItem.Name, Mode=OneWay}"
+                                    <DataGridTextColumn Header="Description"
+                                                Binding="{Binding GameObject.Information, Mode=OneWay}"
                                                 Width="*"/>
                                     <DataGridTextColumn Header="Qty"
                                                 IsReadOnly="True"
@@ -371,25 +368,60 @@
                                     AutoGenerateColumns="False"
                                     HeadersVisibility="Column">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Name"
-                                                Binding="{Binding GameItem.Name, Mode=OneWay}"
+                                    <DataGridTextColumn Header="Description"
+                                                Binding="{Binding GameObject.Information, Mode=OneWay}"
                                                 Width="*"/>
                                     <DataGridTextColumn Header="Qty"
                                                 IsReadOnly="True"
                                                 Width="Auto"
                                                 Binding="{Binding Quantity, Mode=OneWay}"/>
-                                    <DataGridTextColumn Header="Value"
-                                                Binding="{Binding GameItem.Value, Mode=OneWay}"
-                                                Width="Auto"/>
+
                                 </DataGrid.Columns>
                             </DataGrid>
                         </TabItem>
-                        
+
 
                     </TabControl>
 
                 </StackPanel>
 
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" Orientation="Vertical">
+                            <Label Content="Head:" HorizontalAlignment="Right" Style="{StaticResource DetailLabelStyle}" Margin="1"/>
+                            <Label Content="Chest:" HorizontalAlignment="Right" Style="{StaticResource DetailLabelStyle}" Margin="1"/>
+                            <Label Content="Hands:" HorizontalAlignment="Right" Style="{StaticResource DetailLabelStyle}" Margin="1"/>
+                            <Label Content="Legs:" HorizontalAlignment="Right" Style="{StaticResource DetailLabelStyle}" Margin="1"/>
+                            <Label Content="Feet:" HorizontalAlignment="Right" Style="{StaticResource DetailLabelStyle}" Margin="1"/>
+                            <Label Content="Weapon:" HorizontalAlignment="Right" Style="{StaticResource DetailLabelStyle}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Orientation="Vertical">
+                            <TextBox Style="{StaticResource DetailTextBoxStyle}" HorizontalAlignment="Left" Text="{Binding CurrentHelm}" Margin="5"/>
+                            <TextBox Style="{StaticResource DetailTextBoxStyle}" HorizontalAlignment="Left" Text="{Binding CurrentChest}" Margin="5"/>
+                            <TextBox Style="{StaticResource DetailTextBoxStyle}" HorizontalAlignment="Left" Text="{Binding CurrentHands}" Margin="5"/>
+                            <TextBox Style="{StaticResource DetailTextBoxStyle}" HorizontalAlignment="Left" Text="{Binding CurrentLegs}" Margin="5"/>
+                            <TextBox Style="{StaticResource DetailTextBoxStyle}" HorizontalAlignment="Left" Text="{Binding CurrentFeet}" Margin="5"/>
+                            <TextBox Style="{StaticResource DetailTextBoxStyle}" HorizontalAlignment="Left" Text="{Binding CurrentWeapon}" Margin="5"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2" Orientation="Vertical">
+                            <Label Style="{StaticResource HeaderStyle}" Content="Inventory Controls"/>
+                            <Button Name="DropItemButton" Style="{StaticResource ButtonStyle}" Content="Drop" Click="DropItemButton_Click"/>
+                            <Button Name="EquipItemButton" Style="{StaticResource ButtonStyle}" Content="Equip" Click="EquipItemButton_Click"/>
+                            <Button Name="UseItemButton" Style="{StaticResource ButtonStyle}" Content="Use" Click="UseItemButton_Click"/>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
             </Grid>
 
         </Grid>
@@ -422,7 +454,7 @@
                     <TextBox Height="125" Text="{Binding MessageDisplay, Mode=OneWay}" Style="{StaticResource MasterTextBoxStyle}" TextWrapping="Wrap"/>
                 </StackPanel>
                 <Grid Grid.Column="1">
-                   
+
                 </Grid>
                 <StackPanel Grid.Column="2" Orientation="Vertical"/>
             </Grid>

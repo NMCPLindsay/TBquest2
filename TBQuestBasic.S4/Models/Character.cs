@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TBQuestBasic.Models
 {
-    public class Character 
+    public class Character : ObservableObject
     {
        
 

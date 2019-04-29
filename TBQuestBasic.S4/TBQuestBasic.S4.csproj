@@ -61,6 +61,7 @@
     </Compile>
     <Compile Include="BusinessLayer\GameBusiness.cs" />
     <Compile Include="DataLayer\GameData.cs" />
+    <Compile Include="RNGCSP.cs" />
     <Page Include="PresentationLayer\GameSessionView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
