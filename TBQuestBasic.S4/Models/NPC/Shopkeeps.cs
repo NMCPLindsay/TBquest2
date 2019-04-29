@@ -9,5 +9,17 @@ namespace TBQuestBasic.Models.NPC
 {
     public class Shopkeeps : NPC, ITrade
     {
+        #region FIELDS
+
+        #endregion
+        #region PROPERTIES
+
+        #endregion
+        #region CONSTRUCTORS
+
+        #endregion
+        #region METHODS
+
+        #endregion
     }
 }

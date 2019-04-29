@@ -92,7 +92,7 @@
     <Compile Include="Models\NPC\EnemyShip.cs" />
     <Compile Include="Models\NPC\NPC.cs" />
     <Compile Include="Models\PlayerShip.cs" />
-    <Compile Include="Models\NPC\Ships.cs" />
+    <Compile Include="Models\NPC\Ship.cs" />
     <Compile Include="Models\NPC\Shopkeeps.cs" />
     <Compile Include="ObservableObject.cs" />
     <Compile Include="PresentationLayer\GameSessionView.xaml.cs">
@@ -151,6 +151,14 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\bountyforcehq.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\coruscantcitysquare.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\hothorbit.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

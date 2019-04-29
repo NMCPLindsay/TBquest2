@@ -20,13 +20,31 @@ namespace TBQuestBasic.Models
         private bool _canHaveShip;
         private ObservableCollection<NPC.NPC> _npcs;
         private Uri _locationImage;
-
-
-
-
+        private bool _isPlanet;
+        private bool _isLocation;
+        private bool _isBuilding;
+                                    
         #endregion
 
         #region PROPERTIES
+
+        public bool IsBuilding
+        {
+            get { return _isBuilding; }
+            set { _isBuilding = value; }
+        }
+
+        public bool IsLocation
+        {
+            get { return _isLocation; }
+            set { _isLocation = value; }
+        }
+
+        public bool IsPlanet
+        {
+            get { return _isPlanet; }
+            set { _isPlanet = value; }
+        }
 
         public Uri LocationImage
         {

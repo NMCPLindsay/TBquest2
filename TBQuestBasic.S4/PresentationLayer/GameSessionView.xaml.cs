@@ -38,5 +38,52 @@ namespace TBQuestBasic.PresentationLayer
             _gameSessionViewModel.OnMove();
             
         }
+
+        private void ExitBuildingButton_Click(object sender, RoutedEventArgs e)
+        {
+            _gameSessionViewModel.ExitBuilding();
+            
+        }
+
+        private void BuildingPlus1Button_Click(object sender, RoutedEventArgs e)
+        {
+            _gameSessionViewModel.EnterBuilding1();
+        }
+
+        private void PLocationMinus1_Click(object sender, RoutedEventArgs e)
+        {
+            _gameSessionViewModel.MoveToPreviousPlanetLocation();
+            
+        }
+
+        private void BuildingPlus2Button_Click(object sender, RoutedEventArgs e)
+        {
+            _gameSessionViewModel.EnterBuilding2();
+        }
+
+        private void BuildingPlus3Button_Click(object sender, RoutedEventArgs e)
+        {
+            _gameSessionViewModel.EnterBuilding3();
+        }
+
+        private void BuildingPlus4Button_Click(object sender, RoutedEventArgs e)
+        {
+            _gameSessionViewModel.EnterBuilding4();
+        }
+
+        private void PLocationPlus1_Click(object sender, RoutedEventArgs e)
+        {
+            _gameSessionViewModel.MoveToNextPlanetLocation();
+        }
+
+        private void PlanetMinus1Button_Click(object sender, RoutedEventArgs e)
+        {
+            _gameSessionViewModel.MoveToPreviousPlanet();
+        }
+
+        private void PlanetPlus1Button_Click(object sender, RoutedEventArgs e)
+        {
+            _gameSessionViewModel.MoveToNextPlanet();
+        }
     }
 }

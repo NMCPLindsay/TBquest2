@@ -9,10 +9,13 @@ namespace TBQuestBasic.Models.NPC
 {
     public class NPC
     {
+        #region FIELDS
         private int _id;
         private string _name;
         private ObservableCollection<GameObjects.GameObjectQuantity> _npcGameObjects;
+        #endregion
 
+        #region PROPERTIES
         public ObservableCollection<GameObjects.GameObjectQuantity> NPCGameObjects
         {
             get { return _npcGameObjects; }
@@ -32,6 +35,17 @@ namespace TBQuestBasic.Models.NPC
             get { return _id; }
             set { _id = value; }
         }
+        #endregion
 
+        #region CONSTRUCTORS
+        public NPC()
+        {
+
+        }
+        #endregion
+
+        #region METHODS
+
+        #endregion
     }
 }

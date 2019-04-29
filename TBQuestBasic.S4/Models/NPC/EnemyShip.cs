@@ -9,5 +9,21 @@ namespace TBQuestBasic.Models.NPC
 {
     public class EnemyShip :NPC, IBattle
     {
+        #region ENUMS
+
+        #endregion
+        #region FIELDS
+
+        #endregion
+        #region PROPERTIES
+
+        #endregion
+        #region CONSTRUCTORS
+
+        #endregion
+        #region METHODS
+
+        #endregion
+
     }
 }

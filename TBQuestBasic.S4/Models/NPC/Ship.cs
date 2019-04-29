@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TBQuestBasic.Models.Interface;
-
 namespace TBQuestBasic.Models.NPC
 {
-    public class Enemies : NPC, IBattle
+    public class Ship : NPC, IBattle, IPilot
     {
         #region FIELDS
 

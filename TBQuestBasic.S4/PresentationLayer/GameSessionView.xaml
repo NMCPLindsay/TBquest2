@@ -8,8 +8,8 @@
         Title="ReDtHrE3 Development" 
         
         
-        Height="1000" 
-        Width="1700"
+        Height="1050" 
+        Width="1600"
         WindowStartupLocation="CenterScreen" 
         BorderThickness="0"
         ResizeMode="CanResize" FontFamily="Agency FB"  Background="#FF18092E"
@@ -17,7 +17,7 @@
 
     <Window.Resources>
 
-
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
         <Style x:Key="HeaderStyle" TargetType="Label">
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="Foreground" Value="GhostWhite"/>
@@ -47,10 +47,11 @@
             <Setter Property="Width" Value="120"/>
             <Setter Property="Height" Value="20"/>
             <Setter Property="Foreground" Value="DarkBlue"/>
-            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontSize" Value="16"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="IsReadOnly" Value="True"/>
+            
             <Style.Triggers>
                 <Trigger Property="IsFocused" Value="True">
                     <Setter Property="Background" Value="WhiteSmoke" />
@@ -71,6 +72,12 @@
             <Setter Property="Foreground" Value="GhostWhite"/>
             <Setter Property="Width" Value="100"/>
             <Setter Property="Height" Value="40"/>
+        </Style>
+        <Style x:Key="NavButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="DarkBlue"/>
+            <Setter Property="Foreground" Value="GhostWhite"/>
+            <Setter Property="Width" Value="10"/>
+            <Setter Property="Height" Value="20"/>
         </Style>
         <Style x:Key="BorderStyle" TargetType="Border">
             <Setter Property="BorderBrush" Value="GhostWhite"/>
@@ -107,7 +114,7 @@
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
 
-                <Border Style="{StaticResource BorderStyle}" Grid.RowSpan="3" Margin="0,0,0.4,-0.4" />
+                <Border Style="{StaticResource BorderStyle}" Grid.RowSpan="3" Margin="4" />
                 <Grid Grid.Row="0">
                     <StackPanel Grid.Row="0">
                         <Label Style="{StaticResource HeaderStyle}"
@@ -188,7 +195,22 @@
                 </Grid>
 
                 <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
 
+                    <Grid Grid.Column="0">
+                        <Image Name="ShipImage"/>
+                    </Grid>
+                    <StackPanel Grid.Column="1" Orientation="Vertical">
+                        
+                    </StackPanel>
+                    <StackPanel Grid.Column="2" Orientation="Vertical">
+                        
+                    </StackPanel>
+                      
                 </Grid>
                 
             </Grid>
@@ -216,28 +238,63 @@
                     <Label Content="Navigation Controls" Style="{StaticResource SubHeaderStyle}" HorizontalAlignment="Center"/>
                     <Grid Grid.Row="1" Margin="0,0,2,0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="2*"/>
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="10*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" Orientation="Vertical">
+                                <Button Name="PlanetMinus1Button" Style="{StaticResource NavButtonStyle}"  HorizontalAlignment="Right" Content=" " Margin="0,5,0,5" Click="PlanetMinus1Button_Click"/>
+                                <Button Name="PlanetPlus1Button" Style="{StaticResource NavButtonStyle}"  HorizontalAlignment="Right" Content=" " Margin="0,5,0,5" Click="PlanetPlus1Button_Click"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Orientation="Vertical">
+                                <TextBox Style="{StaticResource DetailTextBoxStyle}" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Text="{Binding PreviousPlanet.Name, Mode=OneWay}" Margin="0,5,0,5" />
+                                <TextBox Style="{StaticResource DetailTextBoxStyle}" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Text="{Binding NextPlanet.Name}" Margin="0,5,0,5" />
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="10*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" Orientation="Vertical">
+                                <Button Name="PLocationMinus1" Style="{StaticResource NavButtonStyle}" HorizontalAlignment="Right" Content=" " Margin="0,5,0,5" Click="PLocationMinus1_Click"/>
+                                <Button Name="PLocationPlus1" Style="{StaticResource NavButtonStyle}"  HorizontalAlignment="Right" Content=" " Margin="0,5,0,5" Click="PLocationPlus1_Click"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Orientation="Vertical">
+                                <TextBox Style="{StaticResource DetailTextBoxStyle}"  HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Text="{Binding PreviousPlanetLocation.Name, Mode=OneWay}" Margin="0,5,0,5" />
+                                <TextBox Style="{StaticResource DetailTextBoxStyle}"  HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Text="{Binding NextPlanetLocation.Name}" Margin="0,5,0,5" />
+                            </StackPanel>
+                        </Grid>
+                       
+                   
+                        <Grid Grid.Column="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="10*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" Orientation="Vertical">
 
-                        <StackPanel Grid.Column="0" Orientation="Vertical">
-                            <Button Name="PlanetMinus1Button" Style="{StaticResource ButtonStyle}"/>
-                            <Button Name="PlanetPlus1Button" Style="{StaticResource ButtonStyle}"/>
-                        </StackPanel>
-                        <StackPanel Grid.Column="1" Orientation="Vertical">
-                            <Button Name="PLocationMinus1" Style="{StaticResource ButtonStyle}"/>
-                            <Button Name="PLocationPlus1" Style="{StaticResource ButtonStyle}"/>
-                        </StackPanel>
-                        <StackPanel Grid.Column="2" Orientation="Vertical">
-                            <Button Name="BuildingPlus1Button" Style="{StaticResource ButtonStyle}"/>
-                            <Button Name="BuildingPlus2Button" Style="{StaticResource ButtonStyle}"/>
-                            <Button Name="BuildingPlus3Button" Style="{StaticResource ButtonStyle}"/>
-                            <Button Name="BuildingPlus4Button" Style="{StaticResource ButtonStyle}"/>
-                        </StackPanel>
+                                <Button Name="BuildingPlus1Button" Style="{StaticResource NavButtonStyle}" HorizontalAlignment="Right" Content=" " Margin="0,5,0,5" Click="BuildingPlus1Button_Click"/>
+                                <Button Name="BuildingPlus2Button" Style="{StaticResource NavButtonStyle}" HorizontalAlignment="Right" Content=" " Margin="0,5,0,5" Click="BuildingPlus2Button_Click" />
+                                <Button Name="BuildingPlus3Button" Style="{StaticResource NavButtonStyle}" HorizontalAlignment="Right" Content=" " Margin="0,5,0,5" Click="BuildingPlus3Button_Click"/>
+                                <Button Name="BuildingPlus4Button" Style="{StaticResource NavButtonStyle}" HorizontalAlignment="Right" Content=" " Margin="0,5,0,5" Click="BuildingPlus4Button_Click"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Orientation="Vertical">
+                                <TextBox Style="{StaticResource DetailTextBoxStyle}" HorizontalAlignment="Left"  VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Text="{Binding Building1.Name}" Margin="0,5,0,5" />
+                                <TextBox Style="{StaticResource DetailTextBoxStyle}" HorizontalAlignment="Left"  VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Text="{Binding Building2.Name}" Margin="0,5,0,5" />
+                                <TextBox Style="{StaticResource DetailTextBoxStyle}" HorizontalAlignment="Left"  VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Text="{Binding Building3.Name}" Margin="0,5,0,5" />
+                                <TextBox Style="{StaticResource DetailTextBoxStyle}" HorizontalAlignment="Left"  VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Text="{Binding Building4.Name}" Margin="0,5,0,5"/>
+                            </StackPanel>
+                        </Grid>
+                        
                         <Grid Grid.Column="3">
-                            <Button Name="ExitBuildingButton" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource ButtonStyle}" Content="Return"/>
+                            <Button Name="ExitBuildingButton" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource ButtonStyle}" Content="Return" Click="ExitBuildingButton_Click"/>
 
                         </Grid>
                     </Grid>
@@ -342,7 +399,7 @@
                 <ColumnDefinition Width="4*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0" Grid.ColumnSpan="2" Margin="6,0,988,0">
+            <Grid Grid.Column="0" Margin="6,0,0,0">
 
                 <Image Name="PlayerImage" Source="{Binding Player.ImgFileName}"  HorizontalAlignment="left"/>
                 <Label Content="Name:" Style="{StaticResource DetailLabelStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin ="100,0,0,0"/>
@@ -359,20 +416,38 @@
                 <TextBox Name="PlayerHealthtexbox"  Text="{Binding Player.HitPoints}" Style="{StaticResource DetailTextBoxStyle}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin ="150,125,0,0"/>
             </Grid>
             <Grid Grid.Column="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="1*"/>
-                </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="0" Orientation="Vertical">
 
+                <StackPanel Grid.Column="0" Orientation="Vertical">
+                    <Label Content="System Messages" Style="{StaticResource HeaderStyle}"/>
+                    <TextBox Height="125" Text="{Binding MessageDisplay, Mode=OneWay}" Style="{StaticResource MasterTextBoxStyle}" TextWrapping="Wrap"/>
                 </StackPanel>
                 <Grid Grid.Column="1">
-                    <TextBox Text="{Binding MessageDisplay, Mode=OneWay}" Style="{StaticResource MasterTextBoxStyle}" TextWrapping="Wrap"/>
+                   
                 </Grid>
                 <StackPanel Grid.Column="2" Orientation="Vertical"/>
             </Grid>
-            <Grid Grid.Column="2"/>
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <Label Content="Strength:" Style="{StaticResource DetailLabelStyle}" HorizontalAlignment="Right"/>
+                    <Label Content="Intelligence:" Style="{StaticResource DetailLabelStyle}" HorizontalAlignment="Right"/>
+                    <Label Content="Constitution:" Style="{StaticResource DetailLabelStyle}" HorizontalAlignment="Right"/>
+                    <Label Content="Dexterity:" Style="{StaticResource DetailLabelStyle}" HorizontalAlignment="Right"/>
+                    <Label Content="Wisdom:" Style="{StaticResource DetailLabelStyle}" HorizontalAlignment="Right"/>
+                    <Label Content="Charisma:" Style="{StaticResource DetailLabelStyle}" HorizontalAlignment="Right"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBox Style="{StaticResource DetailTextBoxStyle}" Text="{Binding Player.Strength}" HorizontalAlignment="Left" Margin=" 0,4,0,4"/>
+                    <TextBox Style="{StaticResource DetailTextBoxStyle}" Text="{Binding Player.Intelligence}" HorizontalAlignment="Left" Margin=" 0,4,0,4"/>
+                    <TextBox Style="{StaticResource DetailTextBoxStyle}" Text="{Binding Player.Constitution}" HorizontalAlignment="Left" Margin=" 0,4,0,4"/>
+                    <TextBox Style="{StaticResource DetailTextBoxStyle}" Text="{Binding Player.Dexterity}" HorizontalAlignment="Left" Margin=" 0,4,0,4"/>
+                    <TextBox Style="{StaticResource DetailTextBoxStyle}" Text="{Binding Player.Wisdom}" HorizontalAlignment="Left" Margin=" 0,4,0,4"/>
+                    <TextBox Style="{StaticResource DetailTextBoxStyle}" Text="{Binding Player.Charisma}" HorizontalAlignment="Left" Margin=" 0,4,0,4"/>
+                </StackPanel>
+            </Grid>
 
         </Grid>
     </Grid>

@@ -51,7 +51,7 @@ namespace TBQuestBasic.DataLayer
 
         public static Map GameMapData()
         {
-            Map gameMap = new Map(3, 4, 4);
+            Map gameMap = new Map(4, 5, 5);
             //
             //coruscant locations
             //
@@ -67,6 +67,9 @@ namespace TBQuestBasic.DataLayer
                     "Inside the tallest buildings, enormous differences of temperature and air pressure from top to bottom produced unusual and unpredictable microclimates. As such, Coruscant had its own weather-control system. " +
                     "Thousands of years of development destroyed the planet's ancient mountains and seas. Monument Plaza housed the top of Coruscant's last remaining mountain peak.",
                 CanHaveShip = true,
+                IsBuilding = false,
+                IsPlanet = true,
+                IsLocation = false,
                 LocationImage = new Uri(@"..\..\Assets\coruscantorbit.jpg", UriKind.Relative)
 
 
@@ -76,7 +79,10 @@ namespace TBQuestBasic.DataLayer
                 Id = 3,
                 Name = "Coruscant Spaceport",
                 Description = "The spaceport is bustling with travelers of all kinds. The crowded halls make travel slow and theives are prevelant to rob unsuspecting tourists.",
-                CanHaveShip = true,
+                CanHaveShip = false,
+                IsPlanet = false,
+                IsLocation = true,
+                IsBuilding = false,
                 LocationImage = new Uri(@"..\..\Assets\coruscantshipport.jpg", UriKind.Relative)
 
             };
@@ -86,6 +92,9 @@ namespace TBQuestBasic.DataLayer
                 Name = "Spaceport Terminal",
                 Description = "This is the place where you can board your ship and enter orbit to make light speed calculations to move to another planet. You must have the 'Ship Key' for the ship you wish to pilot.",
                 CanHaveShip = true,
+                IsBuilding = true,
+                IsLocation = false,
+                IsPlanet =false,
                 GameObjects = new ObservableCollection<GameObjectQuantity>()
                 {
                     new GameObjectQuantity(GetGameObjectById(1001),1)
@@ -99,7 +108,11 @@ namespace TBQuestBasic.DataLayer
                 Id = 2,
                 Name = "City Square",
                 Description = "The main city square and location of Bounty Force Headquarters. Here you can go to HQ, shop at the vendors, and (once upon a time) gamble at the arena.",
-                CanHaveShip = false
+                CanHaveShip = false,
+                IsPlanet = false,
+                IsLocation = true,
+                IsBuilding = false,
+                LocationImage = new Uri(@"..\..\Assets\coruscantcitysquare.jpg", UriKind.Relative)
             };
             gameMap.Locations[0, 2, 1] = new Location()
             {
@@ -107,6 +120,9 @@ namespace TBQuestBasic.DataLayer
                 Name = "Bounty Force HQ",
                 Description = "The Headquarters of Bounty Force and your hub for storing resources and getting rewards for bounties. Select the character you wish to speak to concerning the matter.",
                 CanHaveShip = false,
+                IsBuilding = true,
+                IsLocation = false,
+                IsPlanet = false,
                 GameObjects = new ObservableCollection<GameObjectQuantity>()
                 {
                     new GameObjectQuantity(GetGameObjectById(4001), 1),
@@ -136,6 +152,9 @@ namespace TBQuestBasic.DataLayer
                     " The landscape was covered with sand dunes, mountains, and canyons, which made traversing the planet very difficult." +
                     " Due to the absence of surface water, those who lived on Tatooine had to draw moisture through the dry air.",
                 CanHaveShip = true,
+                IsPlanet = true,
+                IsLocation = false,
+                IsBuilding = false,
                 LocationImage = new Uri(@"..\..\Assets\tattooineorbit.jpg", UriKind.Relative)
 
             };
@@ -145,6 +164,9 @@ namespace TBQuestBasic.DataLayer
                 Name = "Mos Eisley Spaceport",
                 Description = "Full of criminals and scoundrels hiding out from Imperial patrols and looking for smuggling runs or con deals, you will never find a mor wretched hive of scum and villany.",
                 CanHaveShip = false,
+                IsPlanet = false,
+                IsLocation = true,
+                IsBuilding = false,
                 LocationImage = new Uri(@"..\..\Assets\moseisleyspaceport.jpg", UriKind.Relative)
 
             };
@@ -154,6 +176,9 @@ namespace TBQuestBasic.DataLayer
                 Name = "Tattooine Spaceport Terminal",
                 Description = "This is the place where you can board your ship and enter orbit to make light speed calculations to move to another planet. You must have the 'Ship Key' for the ship you wish to pilot.",
                 CanHaveShip = true,
+                IsPlanet = false,
+                IsLocation = false,
+                IsBuilding = true,
                 LocationImage = new Uri(@"..\..\Assets\moseisleyterminal.jpg", UriKind.Relative)
             };
             gameMap.Locations[1, 2, 0] = new Location()
@@ -163,7 +188,22 @@ namespace TBQuestBasic.DataLayer
                 Description = "This is the largest city on Tattooine. The traders have almost anything you want whether its stolen property or not is for you to figure out. The Cantina is a good place to get information and maybe some action." +
                 "Head to the junkyard and maybe they have some parts for your ship. Or head out of town to the outskirts but watch for sand people and sandstorms.",
                 CanHaveShip = false,
+                IsPlanet = false,
+                IsLocation = true,
+                IsBuilding = false,
                 LocationImage = new Uri(@"..\..\Assets\moseisley.jpg", UriKind.Relative)
+            };
+            gameMap.Locations[1, 2, 1] = new Location()
+            {
+                Id = 13,
+                Name = "Mos Eisley Cantina",
+                Description = "The Mos Eisley cantina is a dimly-lit tavern known for its strong drinks, hot tunes, and occasional outbreaks of shocking violence. Most star pilots visiting Tatooine spend their downtime in the cantina," +
+                "making it an ideal spot to hire a starship's crew.",
+                CanHaveShip = false,
+                IsPlanet = false,
+                IsLocation = false,
+                IsBuilding = true,
+                LocationImage = new Uri(@"..\..\Assets\moseisleycantina.jpg", UriKind.Relative)
             };
             gameMap.Locations[1, 3, 0] = new Location()
             {
@@ -171,7 +211,10 @@ namespace TBQuestBasic.DataLayer
                 Name = "Tattooine Outskirts",
                 Description = "Harsh desert climate coupled with sarlaccs, sand people, and jawas (if you are a droid), make adventuring out here not for the faint of heart. The infamous Boba Fett was believed to meet his demise hunting the infamous" +
                 " smuggler Han Solo when he fell into a sarlaccs hungry mouth to be digested over 1,000 years.",
-                CanHaveShip = false
+                CanHaveShip = false,
+                IsPlanet = false,
+                IsLocation = true,
+                IsBuilding = false,
             };
 
             //
@@ -185,22 +228,32 @@ namespace TBQuestBasic.DataLayer
                     "Five planets existed between Hoth and its sun, while an asteroid belt surrounded the planet with meteors occasionally striking the surface. Its surface was covered with glaciers and frozen ice plains." +
                     " The temperature, although always frigid, was known to drop to -60°C come nightfall. Although devoid of intelligent life, " +
                     "Hoth was home to fifteen species of large gray snow lizards called tauntauns and to a species of towering predators known as wampas.",
-                CanHaveShip = true
+                CanHaveShip = true,
+                IsPlanet = true,
+                IsLocation = false,
+                IsBuilding = false,
+                LocationImage = new Uri(@"..\..\Assets\hothorbit.jpg", UriKind.Relative)
             };
-            gameMap.Locations[2, 1, 0] = new Location()
-            {
-                Id = 11,
-                Name = "Hoth Wilderness",
-                Description = "Being that there is no other life forms, other than the Wampas and Tauntauns, the only place to land your ship is on the face of a frozen cliff. You see remnants of an old Rebel Base from long ago in the distance.",
-                CanHaveShip = true
-            };
-            gameMap.Locations[2, 1, 1] = new Location()
-            {
-                Id = 12,
-                Name = "Abandoned Rebel Base",
-                Description = "This place is abandoned. What are you doing here? Look around if you want to.",
-                CanHaveShip = true
-            };
+            //gameMap.Locations[2, 1, 0] = new Location()
+            //{
+            //    Id = 11,
+            //    Name = "Hoth Wilderness",
+            //    Description = "Being that there is no other life forms, other than the Wampas and Tauntauns, the only place to land your ship is on the face of a frozen cliff. You see remnants of an old Rebel Base from long ago in the distance.",
+            //    CanHaveShip = true,
+            //    IsPlanet = false,
+            //    IsLocation = true,
+            //    IsBuilding = false,
+            //};
+            //gameMap.Locations[2, 1, 1] = new Location()
+            //{
+            //    Id = 12,
+            //    Name = "Deserted Base",
+            //    Description = "This place is abandoned. What are you doing here? Look around if you want to.",
+            //    CanHaveShip = true,
+            //    IsPlanet = false,
+            //    IsLocation = false,
+            //    IsBuilding = true,
+            //};
 
 
             return gameMap;
